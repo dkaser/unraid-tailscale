@@ -69,12 +69,13 @@ The 'remove' script.
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
 # Stop service
-/etc/rc.d/rc.tailscaled stop 2>/dev/null
+/etc/rc.d/rc.tailscale stop 2>/dev/null
 
 rm /usr/local/sbin/tailscale
 rm /usr/local/sbin/tailscaled
-rm -rf /usr/local/emhttp/plugins/&name;
 rm /etc/rc.d/rc.tailscale
+rm -rf &plugdir;
+rm -rf &confdir;
 
 </INLINE>
 </FILE>
