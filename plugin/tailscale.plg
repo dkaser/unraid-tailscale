@@ -1,0 +1,86 @@
+<?xml version='1.0' standalone='yes'?>
+
+<!DOCTYPE PLUGIN [
+<!ENTITY name      "tailscale">
+<!ENTITY author    "dkaser">
+<!ENTITY version   "2023.03.23">
+<!ENTITY gitURL    "https://raw.githubusercontent.com/&author;/unraid-tailscale/master">
+<!ENTITY pluginURL "&gitURL;/plugin/&name;.plg">
+<!ENTITY pkgURL    "&gitURL;/packages">
+<!ENTITY plgPATH   "/boot/config/plugins/&name;">
+<!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
+<!ENTITY tsPKG     "tailscale_1.38.2_amd64">
+<!ENTITY tsMD5     "6e9614cc3fefb34d23177ac301fa6a5c">
+]>
+
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
+
+<CHANGES>
+##&name;
+###2023.03.23###
+- Initial Release
+</CHANGES>
+
+<FILE Name="&plgPATH;/&tsPKG;.tgz">
+<URL>https://pkgs.tailscale.com/stable/&tsPKG;.tgz</URL>
+<MD5>&tsMD5;</MD5>
+</FILE>
+
+<FILE Name="&emhttp;/rc.tailscale" Mode="0775">
+<URL>&gitURL/source/tailscale/etc/rc.d/rc.tailscale</URL>
+</FILE>
+
+<!-- WORKAROUND -->
+<FILE Name="/tmp/start_&name;" Mode="0770">
+<INLINE>
+#!/bin/bash
+/etc/rc.d/rc.tailscaled start
+</INLINE>
+</FILE>
+
+<!--
+The 'install' script.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+    # upgrade plugin package
+    upgradepkg --install-new &plgPATH;/&plgNAME;.txz
+
+    mkdir -p /usr/local/emhttp/plugins/&name;/bin
+    tar xzf &plgPATH;/&tsPKG;.tgz --strip-components 1 -C /usr/local/emhttp/plugins/&name;/bin
+
+    ln -s &emhttp;/bin/tailscale /usr/local/sbin/tailscale
+    ln -s &emhttp;/bin/tailscaled /usr/local/sbin/tailscaled
+    ln -s &emhttp;/rc.tailscale /etc/rc.d/rc.tailscale
+
+    # start tailscaled
+    echo "starting tailscaled..."
+    at -M -f /tmp/start_&name; now 2>/dev/null
+
+    sleep 1
+
+    rm -f /tmp/start_&name;
+
+    # Cleaning old plugin source files
+    find &plgPATH;/ -type f -iname "&name;-plugin*.txz" ! -iname "*&version;*" -delete
+    find &plgPATH;/ -type f -iname "&name;-plugin*.md5" ! -iname "*&version;*" -delete
+</INLINE>
+</FILE>
+
+<!--
+The 'remove' script.
+-->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+# Stop service
+/etc/rc.d/rc.tailscaled stop 2>/dev/null
+
+rm /usr/local/sbin/tailscale
+rm /usr/local/sbin/tailscaled
+rm -rf /usr/local/emhttp/plugins/&name;
+rm /etc/rc.d/rc.tailscale
+
+</INLINE>
+</FILE>
+
+</PLUGIN>

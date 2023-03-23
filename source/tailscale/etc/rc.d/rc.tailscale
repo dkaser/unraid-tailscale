@@ -1,0 +1,35 @@
+#!/bin/sh
+# /etc/rc.d/rc.tailscaled - start/stop the tailscaled daemon
+
+start_tailscaled() {
+  if ! /usr/bin/pgrep --ns $$ --euid root -f "^/usr/local/sbin/tailscaled" 1> /dev/null 2> /dev/null ; then
+    echo "Starting tailscaled:  /usr/local/sbin/tailscaled"
+    mkdir -p /boot/config/plugins/tailscale/state 
+    /usr/local/sbin/tailscaled -statedir /boot/config/plugins/tailscale/state -tun tailscale1
+  fi
+}
+
+stop_tailscaled() {
+  echo "Stopping tailscaled."
+  /usr/bin/pkill --ns $$ --euid root -f "^/usr/local/sbin/tailscaled" 2> /dev/null 
+}
+
+restart_tailscaled() {
+  stop_tailscaled
+  sleep 1
+  start_tailscaled
+}
+
+case "$1" in
+'start')
+  start_tailscaled
+  ;;
+'stop')
+  stop_tailscaled
+  ;;
+'restart')
+  restart_tailscaled
+  ;;
+*)
+  echo "usage $0 start|stop|restart"
+esac
