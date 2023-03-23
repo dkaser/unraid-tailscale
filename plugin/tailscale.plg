@@ -27,7 +27,7 @@
 </FILE>
 
 <FILE Name="&emhttp;/rc.tailscale" Mode="0775">
-<URL>&gitURL/source/tailscale/etc/rc.d/rc.tailscale</URL>
+<URL>&gitURL;/source/tailscale/etc/rc.d/rc.tailscale</URL>
 </FILE>
 
 <!-- WORKAROUND -->
@@ -60,10 +60,6 @@ The 'install' script.
     sleep 1
 
     rm -f /tmp/start_&name;
-
-    # Cleaning old plugin source files
-    find &plgPATH;/ -type f -iname "&name;-plugin*.txz" ! -iname "*&version;*" -delete
-    find &plgPATH;/ -type f -iname "&name;-plugin*.md5" ! -iname "*&version;*" -delete
 </INLINE>
 </FILE>
 
