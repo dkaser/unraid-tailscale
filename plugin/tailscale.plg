@@ -1,0 +1,83 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+<!ENTITY name      "tailscale">
+<!ENTITY author    "Derek Kaser">
+<!ENTITY version   "2023.03.23">
+<!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
+<!ENTITY confdir   "/boot/config/plugins/&name;">
+<!ENTITY github    "dkaser/unraid-tailscale">
+<!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/main/plugin/&name;.plg">
+<!ENTITY tsPKG     "tailscale_1.38.2_amd64">
+<!ENTITY tsMD5     "6e9614cc3fefb34d23177ac301fa6a5c">
+]>
+
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" icon="bolt">
+
+<CHANGES>
+<![CDATA[
+###2023.03.23###
+- Initial Release
+]]>
+</CHANGES>
+
+<FILE Name="&confdir;/&tsPKG;.tgz">
+<URL>https://pkgs.tailscale.com/stable/&tsPKG;.tgz</URL>
+<MD5>&tsMD5;</MD5>
+</FILE>
+
+<FILE Name="&confdir;/rc.tailscale">
+<URL>https://raw.githubusercontent.com/&github;/main/source/tailscale/etc/rc.d/rc.tailscale</URL>
+<MD5>142d69a3136a10bca43878d2d8be7fc9</MD5>
+</FILE>
+
+<!-- WORKAROUND -->
+<FILE Name="/tmp/start_&name;" Mode="0770">
+<INLINE>
+#!/bin/bash
+/etc/rc.d/rc.tailscale start
+</INLINE>
+</FILE>
+
+<!--
+The 'install' script.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+mkdir -p &plugdir;/bin
+tar xzf &confdir;/&tsPKG;.tgz --strip-components 1 -C &plugdir;/bin
+cp &confdir;/rc.tailscale &plugdir;/rc.tailscale
+
+chmod 0755 &plugdir;/rc.tailscale
+
+ln -s &plugdir;/bin/tailscale /usr/local/sbin/tailscale
+ln -s &plugdir;/bin/tailscaled /usr/local/sbin/tailscaled
+ln -s &plugdir;/rc.tailscale /etc/rc.d/rc.tailscale
+
+# start tailscaled
+echo "starting tailscaled..."
+at -M -f /tmp/start_&name; now 2>/dev/null
+
+sleep 1
+
+rm -f /tmp/start_&name;
+</INLINE>
+</FILE>
+
+<!--
+The 'remove' script.
+-->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+# Stop service
+/etc/rc.d/rc.tailscale stop 2>/dev/null
+
+rm /usr/local/sbin/tailscale
+rm /usr/local/sbin/tailscaled
+rm /etc/rc.d/rc.tailscale
+rm -rf &plugdir;
+rm -rf &confdir;
+
+</INLINE>
+</FILE>
+
+</PLUGIN>
