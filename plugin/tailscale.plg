@@ -11,7 +11,7 @@
 <!ENTITY tsMD5     "6e9614cc3fefb34d23177ac301fa6a5c">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" icon="bolt">
 
 <CHANGES>
 <![CDATA[
