@@ -6,7 +6,7 @@
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY github    "dkaser/unraid-tailscale">
-<!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/main/plugins/&name;.plg">
+<!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/main/plugin/&name;.plg">
 <!ENTITY tsPKG     "tailscale_1.38.2_amd64">
 <!ENTITY tsMD5     "6e9614cc3fefb34d23177ac301fa6a5c">
 ]>
