@@ -1,0 +1,22 @@
+Menu="Utilities"
+Icon="bolt"
+Title="Tailscale"
+---
+<?php
+    $plugin = "tailscale";
+
+    $cfg = parse_plugin_cfg($plugin);
+?>
+<form markdown="1" method="POST" action="/update.php" target="progressFrame">
+<input type="hidden" name="#file" value="<?=$plugin?>/<?=$plugin?>.cfg" />
+<input type="hidden" name="#cleanup" value="" />
+<input type="hidden" name="#command" value="/usr/local/emhttp/plugins/tailscale/update-settings.sh" />
+
+Enable IP Forwarding:
+: <select name='SYSCTL_IP_FORWARD' size='1'>
+	<?=mk_option($cfg['SYSCTL_IP_FORWARD'],'',"No")?>
+	<?=mk_option($cfg['SYSCTL_IP_FORWARD'],'1',"Yes")?>
+	</select>
+
+:    <input type="submit" name="#apply" value="Apply"><input type="button" id="DONE" value="Done" onclick="done()">
+: </form>
