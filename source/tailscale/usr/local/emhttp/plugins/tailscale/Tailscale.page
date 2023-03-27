@@ -10,6 +10,7 @@ Title="Tailscale"
 <form markdown="1" method="POST" action="/update.php" target="progressFrame">
 <input type="hidden" name="#file" value="<?=$plugin?>/<?=$plugin?>.cfg" />
 <input type="hidden" name="#cleanup" value="" />
+<input type="hidden" name="#command" value="/usr/local/emhttp/plugins/tailscale/update-settings.sh" />
 
 Enable IP Forwarding:
 : <select name='SYSCTL_IP_FORWARD' size='1'>
