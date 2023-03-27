@@ -2,13 +2,16 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "tailscale">
 <!ENTITY author    "Derek Kaser">
-<!ENTITY version   "2023.03.23">
+<!ENTITY version   "2023.03.27">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY github    "dkaser/unraid-tailscale">
-<!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/main/plugin/&name;.plg">
-<!ENTITY tsPKG     "tailscale_1.38.2_amd64">
+<!ENTITY branch    "main">
+<!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
+<!ENTITY tsVER     "tailscale_1.38.2_amd64">
 <!ENTITY tsMD5     "6e9614cc3fefb34d23177ac301fa6a5c">
+<!ENTITY pkgVER    "2023.03.27">
+<!ENTITY pkgMD5    "e6fd771482f1a7e6e19f5cd7cc4b0e6b">
 ]>
 
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" icon="bolt">
@@ -17,17 +20,20 @@
 <![CDATA[
 ###2023.03.23###
 - Initial Release
+
+###2023.03.27###
+- Add configuration setting to enable IP forwarding per Tailscale for exit nodes or subnet routers
 ]]>
 </CHANGES>
 
-<FILE Name="&confdir;/&tsPKG;.tgz">
-<URL>https://pkgs.tailscale.com/stable/&tsPKG;.tgz</URL>
+<FILE Name="&confdir;/&tsVER;.tgz">
+<URL>https://pkgs.tailscale.com/stable/&tsVER;.tgz</URL>
 <MD5>&tsMD5;</MD5>
 </FILE>
 
-<FILE Name="&confdir;/rc.tailscale">
-<URL>https://raw.githubusercontent.com/&github;/main/source/tailscale/etc/rc.d/rc.tailscale</URL>
-<MD5>142d69a3136a10bca43878d2d8be7fc9</MD5>
+<FILE Name="&confdir;/tailscale-utils-&pkgVER;.txz" Run="upgradepkg --install-new">
+<URL>https://raw.githubusercontent.com/&github;/&branch;/packages/tailscale-utils-&pkgVER;.txz</URL>
+<MD5>21588002af9bc14cbfcf1734b62fe40d</MD5>
 </FILE>
 
 <!-- WORKAROUND -->
@@ -44,14 +50,12 @@ The 'install' script.
 <FILE Run="/bin/bash">
 <INLINE>
 mkdir -p &plugdir;/bin
-tar xzf &confdir;/&tsPKG;.tgz --strip-components 1 -C &plugdir;/bin
-cp &confdir;/rc.tailscale &plugdir;/rc.tailscale
-
-chmod 0755 &plugdir;/rc.tailscale
+tar xzf &confdir;/&tsVER;.tgz --strip-components 1 -C &plugdir;/bin
 
 ln -s &plugdir;/bin/tailscale /usr/local/sbin/tailscale
 ln -s &plugdir;/bin/tailscaled /usr/local/sbin/tailscaled
-ln -s &plugdir;/rc.tailscale /etc/rc.d/rc.tailscale
+
+&plugdir;/update-settings.sh
 
 # start tailscaled
 echo "starting tailscaled..."
@@ -60,6 +64,10 @@ at -M -f /tmp/start_&name; now 2>/dev/null
 sleep 1
 
 rm -f /tmp/start_&name;
+
+# cleanup old versions
+rm -f $(ls /boot/config/plugins/&name;/tailscale-utils-*.txz 2&gt;/dev/null | grep -v '&pkgVER;')
+rm -f $(ls /boot/config/plugins/&name;/*.tgz 2&gt;/dev/null | grep -v '&tsVER;')
 </INLINE>
 </FILE>
 
@@ -73,7 +81,9 @@ The 'remove' script.
 
 rm /usr/local/sbin/tailscale
 rm /usr/local/sbin/tailscaled
-rm /etc/rc.d/rc.tailscale
+
+removepkg tailscale-utils-&pkgVER;
+
 rm -rf &plugdir;
 rm -rf &confdir;
 
