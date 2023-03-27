@@ -33,7 +33,7 @@
 
 <FILE Name="&confdir;/tailscale-utils-&pkgVER;.txz" Run="upgradepkg --install-new">
 <URL>https://raw.githubusercontent.com/&github;/&branch;/packages/tailscale-utils-&pkgVER;.txz</URL>
-<MD5>21588002af9bc14cbfcf1734b62fe40d</MD5>
+<MD5>&pkgMD5;</MD5>
 </FILE>
 
 <!-- WORKAROUND -->
