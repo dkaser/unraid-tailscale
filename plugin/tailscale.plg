@@ -40,7 +40,7 @@
 <FILE Name="/tmp/start_&name;" Mode="0770">
 <INLINE>
 #!/bin/bash
-/etc/rc.d/rc.tailscale start
+/etc/rc.d/rc.tailscale restart
 </INLINE>
 </FILE>
 
