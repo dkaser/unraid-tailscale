@@ -23,6 +23,9 @@
 
 ###2023.03.27###
 - Add configuration setting to enable IP forwarding per Tailscale for exit nodes or subnet routers
+
+###2023.03.29###
+- Update Tailscale to 1.38.3
 ]]>
 </CHANGES>
 
