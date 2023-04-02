@@ -26,6 +26,11 @@
 
 ###2023.03.29###
 - Update Tailscale to 1.38.3
+
+###2023.04.01###
+- Better support for Taildrop
+- Restart tailscaled service when array starts/stops
+- Send tailscaled logs to syslog
 ]]>
 </CHANGES>
 
