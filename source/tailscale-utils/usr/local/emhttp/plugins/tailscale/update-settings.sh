@@ -1,6 +1,10 @@
 #!/bin/bash
 
-source /boot/config/plugins/tailscale/tailscale.cfg
+TS_PLUGIN_CONFIG=/boot/config/plugins/tailscale/tailscale.cfg
+
+if [ -f $TS_PLUGIN_CONFIG ]; then
+    source $TS_PLUGIN_CONFIG
+fi
 
 if [[ $SYSCTL_IP_FORWARD ]]; then
     echo Enabling IP Forwarding
@@ -16,12 +20,15 @@ if [[ $TAILDROP_DIR && -d "$TAILDROP_DIR" && -x "$TAILDROP_DIR" ]]; then
     mkdir -p /etc/config
     touch /etc/config/uLinux.conf
 
-    mkdir /share
-    ln -s "$TAILDROP_DIR" /share/Taildrop
+    if [ ! -d "/share" ]; then
+        mkdir /share
+    fi
+
+    ln -sfn "$TAILDROP_DIR" /share/Taildrop
     export TS_DISABLE_TAILDROP=0
 else
     echo Taildrop not configured or share not available, disabling
-    if [ ! -s /etc/config/uLinux.conf ]; then
+    if [ ! -s /etc/config/uLinux.conf ] && [ -f /etc/config/uLinux.conf ]; then
         rm /etc/config/uLinux.conf
     fi
     export TS_DISABLE_TAILDROP=1
