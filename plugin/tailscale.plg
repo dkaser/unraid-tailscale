@@ -2,14 +2,14 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "tailscale">
 <!ENTITY author    "Derek Kaser">
-<!ENTITY version   "2023.04.02">
+<!ENTITY version   "2023.04.07">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY github    "dkaser/unraid-tailscale">
 <!ENTITY branch    "main">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
-<!ENTITY tsVER     "tailscale_1.38.3_amd64">
-<!ENTITY tsMD5     "4c823154dc7bc1dd0f5f68bbea7fd767">
+<!ENTITY tsVER     "tailscale_1.38.4_amd64">
+<!ENTITY tsMD5     "5d0cac46b4d35fb24d6c6ef358350b91">
 <!ENTITY pkgVER    "2023.04.02">
 <!ENTITY pkgMD5    "6dc5a00ea13d886a109f6d147caef742">
 ]>
@@ -35,6 +35,9 @@
 ###2023.04.02###
 - Improve log output on upgrade
 - Fix issue where extra Taildrop link can be created inside the Taildrop folder
+
+###2023.04.07###
+- Update Tailscale to 1.38.4
 ]]>
 </CHANGES>
 
@@ -43,7 +46,7 @@
 <MD5>&tsMD5;</MD5>
 </FILE>
 
-<FILE Name="&confdir;/tailscale-utils-&pkgVER;.txz" Run="upgradepkg --install-new">
+<FILE Name="&confdir;/tailscale-utils-&pkgVER;.txz">
 <URL>https://raw.githubusercontent.com/&github;/&branch;/packages/tailscale-utils-&pkgVER;.txz</URL>
 <MD5>&pkgMD5;</MD5>
 </FILE>
@@ -53,6 +56,12 @@ The 'install' script.
 -->
 <FILE Run="/bin/bash">
 <INLINE>
+if [ -d "&plugdir;" ]; then
+    rm -rf &plugdir;
+fi
+
+upgradepkg --install-new &confdir;/tailscale-utils-&pkgVER;.txz
+
 mkdir -p &plugdir;/bin
 tar xzf &confdir;/&tsVER;.tgz --strip-components 1 -C &plugdir;/bin
 
