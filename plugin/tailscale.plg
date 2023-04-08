@@ -60,7 +60,7 @@ if [ -d "&plugdir;" ]; then
     rm -rf &plugdir;
 fi
 
-upgradepkg --install-new &confdir;/tailscale-utils-&pkgVER;.txz
+upgradepkg --install-new --reinstall &confdir;/tailscale-utils-&pkgVER;.txz
 
 mkdir -p &plugdir;/bin
 tar xzf &confdir;/&tsVER;.tgz --strip-components 1 -C &plugdir;/bin
