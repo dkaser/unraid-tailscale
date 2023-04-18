@@ -2,19 +2,28 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "tailscale">
 <!ENTITY author    "Derek Kaser">
-<!ENTITY version   "2023.04.07a">
+<!ENTITY version   "2023.04.26a">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
+<!ENTITY launch    "Settings/Tailscale">
 <!ENTITY github    "dkaser/unraid-tailscale">
 <!ENTITY branch    "main">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
-<!ENTITY tsVER     "tailscale_1.38.4_amd64">
-<!ENTITY tsMD5     "5d0cac46b4d35fb24d6c6ef358350b91">
-<!ENTITY pkgVER    "2023.04.02">
-<!ENTITY pkgMD5    "6dc5a00ea13d886a109f6d147caef742">
+<!ENTITY tsVER     "tailscale_1.40.0_amd64">
+<!ENTITY tsMD5     "ea90bc6af7eb176d93055ab8b5ea7a8c">
+<!ENTITY pkgVER    "2023.04.26a">
+<!ENTITY pkgMD5    "eebfa2d1c67f416291d452845af7f7d1">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" icon="bolt">
+<PLUGIN 
+  name="&name;"
+  author="&author;"
+  version="&version;"
+  pluginURL="&pluginURL;"
+  launch="&launch;"
+  support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
+  icon="bolt"
+>
 
 <CHANGES>
 <![CDATA[
@@ -38,6 +47,10 @@
 
 ###2023.04.07a###
 - Update Tailscale to 1.38.4
+
+###2023.04.26a###
+- Update Tailscale to 1.40.0
+- Improve diagnostic output
 ]]>
 </CHANGES>
 
