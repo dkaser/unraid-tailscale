@@ -14,7 +14,7 @@
 <!ENTITY pkgMD5    "6dc5a00ea13d886a109f6d147caef742">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" icon="bolt">
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" icon="bolt" support="https://forums.unraid.net/topic/136889-plugin-tailscale/">
 
 <CHANGES>
 <![CDATA[
