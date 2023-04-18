@@ -51,6 +51,13 @@
 <MD5>&pkgMD5;</MD5>
 </FILE>
 
+<FILE Name="&plugdir;/README.md">
+<INLINE>
+**Tailscale**
+
+Tailscale as a plugin instead of as a Docker container. This allows connection via Tailscale even if the array is stopped.
+</INLINE>
+</FILE>
 <!--
 The 'install' script.
 -->
