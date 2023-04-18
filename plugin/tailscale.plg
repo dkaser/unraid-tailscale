@@ -5,6 +5,7 @@
 <!ENTITY version   "2023.04.07a">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
+<!ENTITY launch    "Settings/Tailscale">
 <!ENTITY github    "dkaser/unraid-tailscale">
 <!ENTITY branch    "main">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
@@ -14,7 +15,15 @@
 <!ENTITY pkgMD5    "6dc5a00ea13d886a109f6d147caef742">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" icon="bolt" support="https://forums.unraid.net/topic/136889-plugin-tailscale/">
+<PLUGIN 
+  name="&name;"
+  author="&author;"
+  version="&version;"
+  pluginURL="&pluginURL;"
+  launch="&launch;"
+  support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
+  icon="bolt"
+>
 
 <CHANGES>
 <![CDATA[
