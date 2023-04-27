@@ -2,17 +2,17 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "tailscale">
 <!ENTITY author    "Derek Kaser">
-<!ENTITY version   "2023.04.07a">
+<!ENTITY version   "2023.04.26">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY launch    "Settings/Tailscale">
 <!ENTITY github    "dkaser/unraid-tailscale">
 <!ENTITY branch    "main">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
-<!ENTITY tsVER     "tailscale_1.38.4_amd64">
-<!ENTITY tsMD5     "5d0cac46b4d35fb24d6c6ef358350b91">
-<!ENTITY pkgVER    "2023.04.02">
-<!ENTITY pkgMD5    "6dc5a00ea13d886a109f6d147caef742">
+<!ENTITY tsVER     "tailscale_1.40.0_amd64">
+<!ENTITY tsMD5     "ea90bc6af7eb176d93055ab8b5ea7a8c">
+<!ENTITY pkgVER    "2023.04.26">
+<!ENTITY pkgMD5    "1a5f66122fa48a9efd7cfe00a42eedcf">
 ]>
 
 <PLUGIN 
@@ -47,6 +47,10 @@
 
 ###2023.04.07a###
 - Update Tailscale to 1.38.4
+
+###2023.04.26###
+- Update Tailscale to 1.40.0
+- Improve diagnostic output
 ]]>
 </CHANGES>
 
@@ -64,7 +68,7 @@
 <INLINE>
 **Tailscale**
 
-Tailscale as a plugin instead of as a Docker container. This allows connection via Tailscale even if the array is stopped.
+Tailscale is a VPN service that makes the devices and applications you own accessible anywhere in the world, securely and effortlessly.
 </INLINE>
 </FILE>
 <!--
