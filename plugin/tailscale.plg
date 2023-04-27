@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "tailscale">
 <!ENTITY author    "Derek Kaser">
-<!ENTITY version   "2023.04.26">
+<!ENTITY version   "2023.04.26a">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY launch    "Settings/Tailscale">
@@ -11,8 +11,8 @@
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
 <!ENTITY tsVER     "tailscale_1.40.0_amd64">
 <!ENTITY tsMD5     "ea90bc6af7eb176d93055ab8b5ea7a8c">
-<!ENTITY pkgVER    "2023.04.26">
-<!ENTITY pkgMD5    "1a5f66122fa48a9efd7cfe00a42eedcf">
+<!ENTITY pkgVER    "2023.04.26a">
+<!ENTITY pkgMD5    "eebfa2d1c67f416291d452845af7f7d1">
 ]>
 
 <PLUGIN 
@@ -48,7 +48,7 @@
 ###2023.04.07a###
 - Update Tailscale to 1.38.4
 
-###2023.04.26###
+###2023.04.26a###
 - Update Tailscale to 1.40.0
 - Improve diagnostic output
 ]]>
@@ -64,13 +64,6 @@
 <MD5>&pkgMD5;</MD5>
 </FILE>
 
-<FILE Name="&plugdir;/README.md">
-<INLINE>
-**Tailscale**
-
-Tailscale is a VPN service that makes the devices and applications you own accessible anywhere in the world, securely and effortlessly.
-</INLINE>
-</FILE>
 <!--
 The 'install' script.
 -->
