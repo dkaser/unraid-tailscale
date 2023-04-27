@@ -1,5 +1,5 @@
-Menu="Utilities"
-Icon="bolt"
+Menu="NetworkServices"
+Icon="tailscale.png"
 Title="Tailscale"
 ---
 <?php
