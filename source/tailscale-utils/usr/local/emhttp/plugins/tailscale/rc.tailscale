@@ -6,6 +6,7 @@ start_tailscaled() {
     echo "Starting tailscaled:  /usr/local/sbin/tailscaled"
     mkdir -p /boot/config/plugins/tailscale/state 
     /usr/local/sbin/tailscaled -statedir /boot/config/plugins/tailscale/state -tun tailscale1 2>&1 | grep -v "Accept:" | logger -t tailscaled &
+    /bin/sh -c "sleep 10; tailscale debug prefs | jq 'del(.Config)' | logger -t tailscaled" &
   fi
 }
 
