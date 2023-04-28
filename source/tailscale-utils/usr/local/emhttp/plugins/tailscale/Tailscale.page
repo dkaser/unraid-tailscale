@@ -1,13 +1,20 @@
 Menu="NetworkServices"
 Icon="tailscale.png"
 Title="Tailscale"
+Type="xmenu"
+Tabs="true"
+Tag="gears"
 ---
 <?php
     $plugin = "tailscale";
 
     $cfg = parse_plugin_cfg($plugin);
 ?>
-
+<script>
+$(function() {
+  showStatus('tailscaled');
+});
+</script>
 <form markdown="1" method="POST" action="/update.php" target="progressFrame">
 <input type="hidden" name="#file" value="<?=$plugin?>/<?=$plugin?>.cfg" />
 <input type="hidden" name="#cleanup" value="" />
@@ -19,13 +26,13 @@ Enable IP Forwarding
 	<?=mk_option($cfg['SYSCTL_IP_FORWARD'],'1',"Yes")?>
 	</select>
 
-> Sets net.ipv4.ip_forward = 1 and net.ipv6.conf.all.forwarding = 1 in sysctl. <br />
+> Sets net.ipv4.ip_forward = 1 and net.ipv6.conf.all.forwarding = 1 in sysctl.  
 > This change occurs immediately when being enabled.
 
 Taildrop Location
 : <input type="text" name="TAILDROP_DIR" value="<?=htmlspecialchars($cfg['TAILDROP_DIR']);?>">
 
-> Specify the path for incoming Taildrop files. <br />
+> Specify the path for incoming Taildrop files.  
 > If Taildrop is configured, Tailscale will be automatically restarted when the array starts or stops.
 
 **Tailscale will be restarted when changes are applied.**
