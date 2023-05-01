@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "tailscale">
 <!ENTITY author    "Derek Kaser">
-<!ENTITY version   "2023.04.30b">
+<!ENTITY version   "2023.05.01">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY launch    "Settings/Tailscale">
@@ -11,8 +11,8 @@
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
 <!ENTITY tsVER     "tailscale_1.40.0_amd64">
 <!ENTITY tsMD5     "ea90bc6af7eb176d93055ab8b5ea7a8c">
-<!ENTITY pkgVER    "2023.04.30b">
-<!ENTITY pkgMD5    "b9c1d3e0d3aebf8c2d913be74116af7e">
+<!ENTITY pkgVER    "2023.05.01">
+<!ENTITY pkgMD5    "664331c764c39e979bae625b94ad8b7f">
 ]>
 
 <PLUGIN 
@@ -52,8 +52,10 @@
 - Update Tailscale to 1.40.0
 - Improve diagnostic output
 
-###2023.04.30b###
-- Improved configuration settings
+###2023.05.01###
+- Tailscale can now be connected via Web UI
+- Added help page to settings
+- Added status page to settings
 ]]>
 </CHANGES>
 
@@ -97,6 +99,13 @@ echo "starting tailscaled..."
 # cleanup old versions
 rm -f $(ls /boot/config/plugins/&name;/tailscale-utils-*.txz 2&gt;/dev/null | grep -v '&pkgVER;')
 rm -f $(ls /boot/config/plugins/&name;/*.tgz 2&gt;/dev/null | grep -v '&tsVER;')
+
+echo ""
+echo "----------------------------------------------------"
+echo " &name; has been installed."
+echo " Version: &version;"
+echo "----------------------------------------------------"
+echo ""
 </INLINE>
 </FILE>
 
