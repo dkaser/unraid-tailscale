@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "tailscale">
 <!ENTITY author    "Derek Kaser">
-<!ENTITY version   "2023.04.30a">
+<!ENTITY version   "2023.04.30b">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY launch    "Settings/Tailscale">
@@ -11,8 +11,8 @@
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
 <!ENTITY tsVER     "tailscale_1.40.0_amd64">
 <!ENTITY tsMD5     "ea90bc6af7eb176d93055ab8b5ea7a8c">
-<!ENTITY pkgVER    "2023.04.30a">
-<!ENTITY pkgMD5    "2e19d395cb0e043c82b8f36e61650fc7">
+<!ENTITY pkgVER    "2023.04.30b">
+<!ENTITY pkgMD5    "b9c1d3e0d3aebf8c2d913be74116af7e">
 ]>
 
 <PLUGIN 
@@ -52,7 +52,7 @@
 - Update Tailscale to 1.40.0
 - Improve diagnostic output
 
-###2023.04.30a###
+###2023.04.30b###
 - Improved configuration settings
 ]]>
 </CHANGES>
