@@ -5,10 +5,36 @@ Type="xmenu"
 Tabs="true"
 Tag="link"
 ---
-<script>
-  function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
-  }
-</script>
+<?php
+    $plugin = "tailscale";
 
-<iframe src="/plugins/tailscale/interface.php" style="width:100%; height:600px; border: none;" ></iframe>
+    $cfg = parse_plugin_cfg($plugin);
+?>
+<script>
+$(function() {
+  showStatus('tailscaled');
+});
+</script>
+<form markdown="1" method="POST" action="/update.php" target="progressFrame">
+<input type="hidden" name="#file" value="<?=$plugin?>/<?=$plugin?>.cfg" />
+<input type="hidden" name="#cleanup" value="" />
+<input type="hidden" name="#command" value="/usr/local/emhttp/plugins/tailscale/restart.sh" />
+
+Enable IP Forwarding
+: <select name='SYSCTL_IP_FORWARD' size='1'>
+	<?=mk_option($cfg['SYSCTL_IP_FORWARD'],'',"No")?>
+	<?=mk_option($cfg['SYSCTL_IP_FORWARD'],'1',"Yes")?>
+	</select>
+
+> Sets net.ipv4.ip_forward = 1 and net.ipv6.conf.all.forwarding = 1 in sysctl.  
+> This change occurs immediately when being enabled.
+
+Taildrop Location
+: <input type="text" name="TAILDROP_DIR" value="<?=htmlspecialchars($cfg['TAILDROP_DIR']);?>">
+
+> Specify the path for incoming Taildrop files.  
+> If Taildrop is configured, Tailscale will be automatically restarted when the array starts or stops.
+
+**Tailscale will be restarted when changes are applied.**
+: <input type="submit" name="#apply" value="Apply"><input type="button" id="DONE" value="Done" onclick="done()">
+  </form>

@@ -16,15 +16,21 @@ fi
 
 if [[ $TAILDROP_DIR && -d "$TAILDROP_DIR" && -x "$TAILDROP_DIR" ]]; then
     echo Configuring Taildrop
+    
+    mkdir -p /etc/config
+    touch /etc/config/uLinux.conf
 
-    if [ ! -d "/volume1" ]; then
-        mkdir /volume1
+    if [ ! -d "/share" ]; then
+        mkdir /share
     fi
 
-    ln -sfn "$TAILDROP_DIR" /volume1/Taildrop
+    ln -sfn "$TAILDROP_DIR" /share/Taildrop
     export TS_DISABLE_TAILDROP=0
 else
     echo Taildrop not configured or share not available, disabling
+    if [ ! -s /etc/config/uLinux.conf ] && [ -f /etc/config/uLinux.conf ]; then
+        rm /etc/config/uLinux.conf
+    fi
     export TS_DISABLE_TAILDROP=1
 fi
 

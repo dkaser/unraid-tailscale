@@ -78,16 +78,10 @@ if [ -d "&plugdir;" ]; then
     rm -rf &plugdir;
 fi
 
-groupadd -f administrators
-usermod -a -G administrators root
-
 upgradepkg --install-new --reinstall &confdir;/tailscale-utils-&pkgVER;.txz
 
 mkdir -p &plugdir;/bin
 tar xzf &confdir;/&tsVER;.tgz --strip-components 1 -C &plugdir;/bin
-
-mkdir -p /usr/syno/synoman/webman/modules/
-ln -s &plugdir;/authenticate.cgi /usr/syno/synoman/webman/modules/authenticate.cgi
 
 ln -s &plugdir;/bin/tailscale /usr/local/sbin/tailscale
 ln -s &plugdir;/bin/tailscaled /usr/local/sbin/tailscaled
