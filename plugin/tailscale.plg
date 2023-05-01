@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "tailscale">
 <!ENTITY author    "Derek Kaser">
-<!ENTITY version   "2023.05.01">
+<!ENTITY version   "2023.05.01a">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY launch    "Settings/Tailscale">
@@ -11,8 +11,8 @@
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
 <!ENTITY tsVER     "tailscale_1.40.0_amd64">
 <!ENTITY tsMD5     "ea90bc6af7eb176d93055ab8b5ea7a8c">
-<!ENTITY pkgVER    "2023.05.01">
-<!ENTITY pkgMD5    "664331c764c39e979bae625b94ad8b7f">
+<!ENTITY pkgVER    "2023.05.01a">
+<!ENTITY pkgMD5    "4eac2dbf105816207bf953ee8e73eb2f">
 ]>
 
 <PLUGIN 
@@ -53,7 +53,6 @@
 - Improve diagnostic output
 
 ###2023.05.01###
-- Tailscale can now be connected via Web UI
 - Added help page to settings
 - Added status page to settings
 ]]>
