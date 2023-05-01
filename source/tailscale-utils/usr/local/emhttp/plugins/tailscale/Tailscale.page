@@ -3,7 +3,7 @@ Icon="tailscale.png"
 Title="Tailscale"
 Type="xmenu"
 Tabs="true"
-Tag="gears"
+Tag="link"
 ---
 <script>
   function resizeIframe(obj) {

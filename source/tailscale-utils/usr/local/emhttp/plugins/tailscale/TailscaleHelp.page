@@ -6,15 +6,14 @@ Type="xmenu"
 ---
 ## Initial Configuration
 
-Open a console and use the tailscale CLI: https://tailscale.com/cli.  
-Most users will simply need to run `tailscale up` and log in via their web
-browser. Alternately, you can use an auth key with `tailscale up --authkey`.
+Tailscale can be connected via the main plugin settings page. Alternately, you 
+can use an auth key with tailscale up --authkey.
 
-You may want to disable key expiration for your server (either by using an 
-auth key when connecting, or afterwards via the Tailscale admin console).
+Additional Tailscale features (such as running as an exit node or subnet router) 
+can be enabled via the Tailscale CLI.
 
-Additional Tailscale features (such as running as an exit node or subnet
-router) can be enabled via the Tailscale CLI.
+You may want to disable key expiration for your server (either by using an auth
+key when connecting, or afterwards via the Tailscale admin console). 
 
 ## Settings
 

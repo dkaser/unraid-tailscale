@@ -1,6 +1,6 @@
 Menu="Tailscale"
 Icon="tailscale.png"
-Title="Config"
+Title="Settings"
 Tag="gears"
 Type="xmenu"
 ---
