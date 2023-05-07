@@ -18,6 +18,7 @@ Type="xmenu"
 
     // Get Values
     // $var = isset($a) ? $a : "";
+    $tsVersion = isset($status->Version) ? $status->Version : "Unknown";
     $keyExpiration = isset($status->Self->KeyExpiry) ? $status->Self->KeyExpiry : "Disabled";
     $online = isset($status->Self->Online) ? ($status->Self->Online ? "Yes" : "No") : "Unknown";
     $inNetMap = isset($status->Self->InNetworkMap) ? ($status->Self->InNetworkMap ? "Yes" : "No") : "Unknown";
@@ -30,6 +31,7 @@ Type="xmenu"
     $advertisedRoutes = isset($prefs->AdvertiseRoutes) ? implode("<br />",$prefs->AdvertiseRoutes) : "None";
     $acceptRoutes = isset($prefs->RouteAll) ? ($prefs->RouteAll ? "Yes" : "No") : "Unknown";
 
+    printRow("Tailscale Version", $tsVersion);
     printRow("Hostname", $hostName);
     printRow("DNS Name", $dnsName);
     printRow("Logged In", $loggedIn);

@@ -3,18 +3,24 @@ Icon="tailscale.png"
 Title="Tailscale"
 Type="xmenu"
 Tabs="true"
-Tag="link"
+Tag="gears"
 ---
 <?php
     $plugin = "tailscale";
 
     $cfg = parse_plugin_cfg($plugin);
+    $started = $var['fsState']=='Started';
+    $bgcolor           = strstr('white,azure',$display['theme']) ? '#f2f2f2' : '#1c1c1c';
 ?>
 <script>
 $(function() {
   showStatus('tailscaled');
 });
 </script>
+<style>
+.fileTree{background:<?=$bgcolor?>;width:300px;max-height:150px;overflow-y:scroll;overflow-x:hidden;position:absolute;z-index:100;display:none}
+</style>
+<link type="text/css" rel="stylesheet" href="<?autov('/webGui/styles/jquery.filetree.css')?>">
 <form markdown="1" method="POST" action="/update.php" target="progressFrame">
 <input type="hidden" name="#file" value="<?=$plugin?>/<?=$plugin?>.cfg" />
 <input type="hidden" name="#cleanup" value="" />
@@ -30,7 +36,7 @@ Enable IP Forwarding
 > This change occurs immediately when being enabled.
 
 Taildrop Location
-: <input type="text" name="TAILDROP_DIR" value="<?=htmlspecialchars($cfg['TAILDROP_DIR']);?>">
+: <input type="text" id="taildropdir" name="TAILDROP_DIR" autocomplete="off" spellcheck="false" data-pickfolders="true" data-pickfilter="HIDE_FILES_FILTER" data-pickroot="/mnt" pattern="^[^\\]*/$" value="<?=htmlspecialchars($cfg['TAILDROP_DIR']);?>">
 
 > Specify the path for incoming Taildrop files.  
 > If Taildrop is configured, Tailscale will be automatically restarted when the array starts or stops.
@@ -38,3 +44,12 @@ Taildrop Location
 **Tailscale will be restarted when changes are applied.**
 : <input type="submit" name="#apply" value="Apply"><input type="button" id="DONE" value="Done" onclick="done()">
   </form>
+
+<script src="<?autov('/webGui/javascript/jquery.filetree.js')?>" charset="utf-8"></script>
+<script>
+$(function(){
+  <?if ($started):?>
+  $('#taildropdir').fileTreeAttach();
+  <?endif;?>
+});
+</script>
