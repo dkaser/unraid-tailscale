@@ -1,0 +1,54 @@
+Menu="Tailscale"
+Icon="tailscale.png"
+Title="Info"
+Tag="info"
+Type="xmenu"
+---
+<?php
+    function printRow($title,$value) {
+        echo "<tr><td>$title</td><td>$value</td></tr>" . PHP_EOL;
+    }
+
+    exec("tailscale status --json",$out_status);
+    $status = json_decode(implode($out_status));
+
+    exec("tailscale debug prefs",$out_prefs);
+    $prefs = json_decode(implode($out_prefs));
+
+    // Get Values
+    // $var = isset($a) ? $a : "";
+    $tsVersion = isset($status->Version) ? $status->Version : "Unknown";
+    $keyExpiration = isset($status->Self->KeyExpiry) ? $status->Self->KeyExpiry : "Disabled";
+    $online = isset($status->Self->Online) ? ($status->Self->Online ? "Yes" : "No") : "Unknown";
+    $inNetMap = isset($status->Self->InNetworkMap) ? ($status->Self->InNetworkMap ? "Yes" : "No") : "Unknown";
+    $magicDNSSuffix = isset($status->MagicDNSSuffix) ? $status->MagicDNSSuffix : "Unknown";
+    $hostName = isset($status->Self->HostName) ? $status->Self->HostName : "Unknown";
+    $dnsName = isset($status->Self->DNSName) ? $status->Self->DNSName : "Unknown";
+    $tags = isset($status->Self->Tags) ? implode("<br />",$status->Self->Tags) : "";
+    $tailscaleIPs = isset($status->TailscaleIPs) ? implode("<br />",$status->TailscaleIPs) : "Unknown";
+    $loggedIn = isset($prefs->LoggedOut) ? ($prefs->LoggedOut ? "No" : "Yes") : "Unknown";
+    $advertisedRoutes = isset($prefs->AdvertiseRoutes) ? implode("<br />",$prefs->AdvertiseRoutes) : "None";
+    $acceptRoutes = isset($prefs->RouteAll) ? ($prefs->RouteAll ? "Yes" : "No") : "Unknown";
+    $tsHealth = isset($status->Health) ? implode("<br />",$status->Health) : "";
+?>
+<table class="share_status">
+<thead><tr><td>Status</td><td>&nbsp;</td></tr></thead>
+<tbody><?php
+    printRow("Tailscale Version", $tsVersion);
+    printRow("Tailscale Health", $tsHealth);
+    printRow("Logged In", $loggedIn);
+    printRow("In Network Map", $inNetMap);
+    printRow("Online", $online);
+    printRow("Key Expiration", $keyExpiration);
+    printRow("Tags", $tags);
+?></tbody>
+<thead><tr><td>Connection</td><td>&nbsp;</td></tr></thead>
+<tbody><?php
+    printRow("Hostname", $hostName);
+    printRow("DNS Name", $dnsName);
+    printRow("Tailscale IPs", $tailscaleIPs);
+    printRow("MagicDNS Suffix", $magicDNSSuffix);
+    printRow("Advertised Routes", $advertisedRoutes);
+    printRow("Accept Routes", $acceptRoutes);
+?></tbody>
+</table>
