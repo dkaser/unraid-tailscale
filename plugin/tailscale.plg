@@ -11,8 +11,8 @@
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/&branch;/plugin/&name;.plg">
 <!ENTITY tsVER     "tailscale_1.40.0_amd64">
 <!ENTITY tsMD5     "ea90bc6af7eb176d93055ab8b5ea7a8c">
-<!ENTITY pkgVER    "2023.05.01a">
-<!ENTITY pkgMD5    "4eac2dbf105816207bf953ee8e73eb2f">
+<!ENTITY pkgVER    "2023.05.08">
+<!ENTITY pkgMD5    "a579f4aa412a011e6882abad6df0d410">
 ]>
 
 <PLUGIN 
@@ -52,9 +52,10 @@
 - Update Tailscale to 1.40.0
 - Improve diagnostic output
 
-###2023.05.01###
+###NEXT###
 - Added help page to settings
-- Added status page to settings
+- Added info page to settings
+- Moved Tailscale to Network Services section of Settings
 ]]>
 </CHANGES>
 
