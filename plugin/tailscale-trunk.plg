@@ -5,10 +5,9 @@
   name="tailscale"
   author="Derek Kaser"
   version="2023.05.10"
-  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/plugin/tailscale.plg"
+  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/plugin/tailscale-trunk.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
-  icon="bolt"
 >
 
 <CHANGES>
