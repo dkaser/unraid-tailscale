@@ -5,7 +5,7 @@
   name="tailscale"
   author="Derek Kaser"
   version="2023.05.10"
-  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/plugin/tailscale.plg"
+  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/plugin/tailscale.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
   icon="bolt"
@@ -53,7 +53,7 @@
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/tailscale-utils-2023.05.08.txz">
-<URL>https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/packages/tailscale-utils-2023.05.08.txz</URL>
+<URL>https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/packages/tailscale-utils-2023.05.08.txz</URL>
 <MD5>a579f4aa412a011e6882abad6df0d410</MD5>
 </FILE>
 
