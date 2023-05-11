@@ -1,0 +1,52 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN>
+
+<PLUGIN 
+  name="{{ name }}"
+  author="{{ author }}"
+  version="{{ version }}"
+  pluginURL="https://raw.githubusercontent.com/{{ githubRepository }}/{{ branch }}/plugin/{{ name }}.plg"
+  launch="Settings/Tailscale"
+  support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
+  icon="bolt"
+>
+
+<CHANGES>
+<![CDATA[
+{% include "files/CHANGELOG.md" %}
+]]>
+</CHANGES>
+
+<FILE Name="{{ configDirectory }}/{{ tailscaleVersion }}.tgz">
+<URL>https://pkgs.tailscale.com/stable/{{ tailscaleVersion }}.tgz</URL>
+<MD5>{{ tailscaleMD5 }}</MD5>
+</FILE>
+
+<FILE Name="{{ configDirectory }}/tailscale-utils-{{ packageVersion }}.txz">
+<URL>https://raw.githubusercontent.com/{{ githubRepository }}/{{ branch }}/packages/tailscale-utils-{{ packageVersion }}.txz</URL>
+<MD5>{{ packageMD5 }}</MD5>
+</FILE>
+
+<!--
+The 'install' script.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+<![CDATA[
+{% include "files/install.sh" %}
+]]>
+</INLINE>
+</FILE>
+
+<!--
+The 'remove' script.
+-->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+<![CDATA[
+{% include "files/remove.sh" %}
+]]>
+</INLINE>
+</FILE>
+
+</PLUGIN>
