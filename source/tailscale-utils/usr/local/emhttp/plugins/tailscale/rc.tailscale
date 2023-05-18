@@ -1,9 +1,14 @@
 #!/bin/sh
 # /etc/rc.d/rc.tailscaled - start/stop the tailscaled daemon
 
+log() {
+  echo "$1"
+  logger -t unraid-tailscale "$1"
+}
+
 start_tailscaled() {
   if ! /usr/bin/pgrep --ns $$ --euid root -f "^/usr/local/sbin/tailscaled" 1> /dev/null 2> /dev/null ; then
-    echo "Starting tailscaled:  /usr/local/sbin/tailscaled"
+    log "Starting tailscaled: /usr/local/sbin/tailscaled"
     mkdir -p /boot/config/plugins/tailscale/state 
     /usr/local/sbin/tailscaled -statedir /boot/config/plugins/tailscale/state -tun tailscale1 2>&1 | grep -v "Accept:" | logger -t tailscaled &
     /bin/sh -c "sleep 10; tailscale debug prefs | jq 'del(.Config)' | logger -t tailscaled" &
@@ -11,7 +16,7 @@ start_tailscaled() {
 }
 
 stop_tailscaled() {
-  echo "Stopping tailscaled."
+  log "Stopping tailscaled."
   /usr/bin/pkill --ns $$ --euid root -f "^/usr/local/sbin/tailscaled" 2> /dev/null 
 }
 

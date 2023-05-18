@@ -2,12 +2,24 @@
 
 TS_PLUGIN_CONFIG=/boot/config/plugins/tailscale/tailscale.cfg
 
+log() {
+  echo "$1"
+  logger -t unraid-tailscale "$1"
+}
+
+# Cleanup Taildrop emulation from pre-1.42.0
+if [ ! -s /etc/config/uLinux.conf ] && [ -f /etc/config/uLinux.conf ]; then
+    log "Cleaning up Taildrop emulation"
+    rm /etc/config/uLinux.conf
+fi
+
 if [ -f $TS_PLUGIN_CONFIG ]; then
+    logger -t unraid-tailscale < $TS_PLUGIN_CONFIG
     source $TS_PLUGIN_CONFIG
 fi
 
 if [[ $SYSCTL_IP_FORWARD ]]; then
-    echo Enabling IP Forwarding
+    log "Enabling IP Forwarding"
 
     echo 'net.ipv4.ip_forward = 1' > /etc/sysctl.d/99-tailscale.conf
     echo 'net.ipv6.conf.all.forwarding = 1' >> /etc/sysctl.d/99-tailscale.conf
@@ -15,23 +27,13 @@ if [[ $SYSCTL_IP_FORWARD ]]; then
 fi
 
 if [[ $TAILDROP_DIR && -d "$TAILDROP_DIR" && -x "$TAILDROP_DIR" ]]; then
-    echo Configuring Taildrop
-    
-    mkdir -p /etc/config
-    touch /etc/config/uLinux.conf
+    log "Configuring Taildrop link"
 
-    if [ ! -d "/share" ]; then
-        mkdir /share
+    if [ ! -d "/var/lib/tailscale" ]; then
+        mkdir /var/lib/tailscale
     fi
 
-    ln -sfn "$TAILDROP_DIR" /share/Taildrop
-    export TS_DISABLE_TAILDROP=0
-else
-    echo Taildrop not configured or share not available, disabling
-    if [ ! -s /etc/config/uLinux.conf ] && [ -f /etc/config/uLinux.conf ]; then
-        rm /etc/config/uLinux.conf
-    fi
-    export TS_DISABLE_TAILDROP=1
+    ln -sfn "$TAILDROP_DIR" /var/lib/tailscale/Taildrop
 fi
 
 /etc/rc.d/rc.tailscale restart
