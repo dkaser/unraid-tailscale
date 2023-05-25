@@ -1,8 +1,9 @@
-###NEXT###
+###2023.05.25###
 - Updated Tailscale to 1.42.0
 - Added Tailscale web interface to Settings page
 - Switched Taildrop implementation to use native Unraid support
 - Add GUI options for --accept-routes and --accept-dns
+- Add notifications for Tailscale key expiration
 
 ###2023.05.10###
 - Added help page to settings
