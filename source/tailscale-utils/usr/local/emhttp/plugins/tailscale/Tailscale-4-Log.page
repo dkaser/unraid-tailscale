@@ -1,7 +1,7 @@
 Menu="Tailscale"
 Icon="tailscale.png"
 Title="Log"
-Tag="question"
+Tag="file"
 Type="xmenu"
 ---
 <?PHP
