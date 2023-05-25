@@ -1,0 +1,66 @@
+Menu="Tailscale"
+Icon="tailscale.png"
+Title="Log"
+Tag="question"
+Type="xmenu"
+---
+<?PHP
+/* Copyright 2005-2023, Lime Technology
+ * Copyright 2012-2023, Bergware International.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 2,
+ * as published by the Free Software Foundation.
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ */
+?>
+<?
+$log    = '/var/log/syslog';
+$max    = 500;
+?>
+<style>
+input#max{border:none;width:60px;margin:0;padding:0}
+</style>
+<script>
+var logfile = "<?=$log?>";
+
+<?if (_var($display,'resize')):?>
+function resize() {
+  $('pre.up').height(Math.max(window.innerHeight-320,330));
+}
+<?endif;?>
+function showLog(log) {
+  logfile = log;
+  $('span.label input[type=checkbox]').prop('checked',true);
+  $('span.label').each(function(){
+    var type = $(this).attr('class').replace('label','').replace(/-/g,'');
+    $(this).removeClass().addClass(type+' label');
+  });
+  timers.syslog = setTimeout(function(){$('div.spinner.fixed').show('slow');},500);
+  $.post('/webGui/include/Syslog.php',{log:log,max:$('#max').val()||<?=$max?>},function(data){
+    clearTimeout(timers.syslog);
+    const result = data.split(/\r?\n/);
+    const filtered = result.filter(line => line.includes('tailscale')).reverse();
+
+    $('pre.up').html(filtered.join('\r\n'));
+    $('div.spinner.fixed').hide('slow');
+  });
+}
+$(function() {
+  $('input#max').on('keydown',function(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      showLog(logfile);
+    }
+  });
+<?if (_var($display,'resize')):?>
+  resize();
+  $(window).bind('resize',function(){resize();});
+<?endif;?>
+  showLog(logfile);
+});
+</script>
+<pre class='up'></pre>
