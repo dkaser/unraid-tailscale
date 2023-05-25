@@ -9,9 +9,6 @@ Type="xmenu"
         echo "<tr><td>$title</td><td>$value</td></tr>" . PHP_EOL;
     }
 
-    exec("tailscale status --json",$out_status);
-    $status = json_decode(implode($out_status));
-
     exec("tailscale debug prefs",$out_prefs);
     $prefs = json_decode(implode($out_prefs));
 
