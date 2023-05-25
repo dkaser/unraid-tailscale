@@ -10,7 +10,7 @@ You may want to disable key expiration for your server (either by using an
 auth key and connecting via the CLI, or afterwards via the Tailscale admin
 console).
 
-## Settings
+## System Settings
 
 ### Enable IP Forwarding
 
@@ -28,6 +28,24 @@ Taildrop.
 
 If this setting is configured, Tailscale will be restarted when the array
 starts; this is required for the Taildrop folder to be detected and used.
+
+## Tailscale Settings
+
+### Accept Routes
+
+This setting modifies the Tailscale --accept-routes setting.
+
+When set to Yes, --accept-routes is set to True.
+When set to No, --accept-routes is set to False.
+When set to Ignore, the plugin does not modify --accept-routes. (Useful if you prefer to configure the setting via CLI).
+
+### Accept DNS
+
+This setting modifies the Tailscale --accept-dns setting.
+
+When set to Yes, --accept-dns is set to True.
+When set to No, --accept-dns is set to False.
+When set to Ignore, the plugin does not modify --accept-dns. (Useful if you prefer to configure the setting via CLI).
 
 ## Certificates
 

@@ -20,6 +20,8 @@ Tag="gears"
 <input type="hidden" name="#cleanup" value="" />
 <input type="hidden" name="#command" value="/usr/local/emhttp/plugins/tailscale/restart.sh" />
 
+### System Settings
+
 Enable IP Forwarding
 : <select name='SYSCTL_IP_FORWARD' size='1'>
 	<?=mk_option($cfg['SYSCTL_IP_FORWARD'],'',"No")?>
@@ -34,6 +36,30 @@ Taildrop Location
 
 > Specify the path for incoming Taildrop files.  
 > If Taildrop is configured, Tailscale will be automatically restarted when the array starts or stops.
+
+### Tailscale Settings
+
+Accept Routes
+: <select name='ACCEPT_ROUTES' size='1'>
+	<?=mk_option($cfg['ACCEPT_ROUTES'],'',"Ignore")?>
+	<?=mk_option($cfg['ACCEPT_ROUTES'],'1',"Yes")?>
+  <?=mk_option($cfg['ACCEPT_ROUTES'],'0',"No")?>
+	</select>
+
+> Accept routes from the tailnet.
+> If set to "Ignore", the plugin will not modify the setting.
+
+Accept DNS
+: <select name='ACCEPT_DNS' size='1'>
+	<?=mk_option($cfg['ACCEPT_DNS'],'',"Ignore")?>
+	<?=mk_option($cfg['ACCEPT_DNS'],'1',"Yes")?>
+  <?=mk_option($cfg['ACCEPT_DNS'],'0',"No")?>
+	</select>
+
+> Accept DNS from the tailnet.
+> If set to "Ignore", the plugin will not modify the setting.
+
+### Save Settings
 
 **Tailscale will be restarted when changes are applied.**
 : <input type="submit" name="#apply" value="Apply"><input type="button" id="DONE" value="Done" onclick="done()">

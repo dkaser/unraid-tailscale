@@ -29,6 +29,7 @@ Type="xmenu"
     $loggedIn = isset($prefs->LoggedOut) ? ($prefs->LoggedOut ? "No" : "Yes") : "Unknown";
     $advertisedRoutes = isset($prefs->AdvertiseRoutes) ? implode("<br />",$prefs->AdvertiseRoutes) : "None";
     $acceptRoutes = isset($prefs->RouteAll) ? ($prefs->RouteAll ? "Yes" : "No") : "Unknown";
+    $acceptDNS = isset($prefs->CorpDNS) ? ($prefs->CorpDNS ? "Yes" : "No") : "Unknown";
     $tsHealth = isset($status->Health) ? implode("<br />",$status->Health) : "";
 ?>
 <table class="share_status">
@@ -50,5 +51,6 @@ Type="xmenu"
     printRow("MagicDNS Suffix", $magicDNSSuffix);
     printRow("Advertised Routes", $advertisedRoutes);
     printRow("Accept Routes", $acceptRoutes);
+    printRow("Accept DNS", $acceptDNS);
 ?></tbody>
 </table>
