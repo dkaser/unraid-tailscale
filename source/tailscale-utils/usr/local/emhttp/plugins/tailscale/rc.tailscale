@@ -10,8 +10,8 @@ start_tailscaled() {
   if ! /usr/bin/pgrep --ns $$ --euid root -f "^/usr/local/sbin/tailscaled" 1> /dev/null 2> /dev/null ; then
     log "Starting tailscaled: /usr/local/sbin/tailscaled"
     mkdir -p /boot/config/plugins/tailscale/state 
-    /usr/local/sbin/tailscaled -statedir /boot/config/plugins/tailscale/state -tun tailscale1 2>&1 | grep -v "Accept:" | logger -t tailscaled &
-    /bin/sh -c "sleep 20; tailscale debug prefs | jq 'del(.Config)' | logger -t tailscaled" &
+    /usr/local/sbin/tailscaled -statedir /boot/config/plugins/tailscale/state -tun tailscale1 2>&1 | grep -vE "Accept|no upstream resolvers set" | logger -t tailscaled &
+    /bin/sh -c "sleep 20; tailscale debug prefs | jq 'del(.Config)' -c | logger -t tailscaled" &
   fi
 }
 
