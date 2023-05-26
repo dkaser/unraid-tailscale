@@ -44,6 +44,8 @@ fi
 
 /etc/rc.d/rc.tailscale restart
 
+sleep 10
+
 case "$ACCEPT_ROUTES" in
 '0')
     tailscale set --accept-routes=false
