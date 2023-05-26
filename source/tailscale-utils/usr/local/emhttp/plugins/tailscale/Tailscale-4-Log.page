@@ -26,11 +26,6 @@ input#max{border:none;width:60px;margin:0;padding:0}
 <script>
 var logfile = "<?=$log?>";
 
-<?if (_var($display,'resize')):?>
-function resize() {
-  $('pre.up').height(Math.max(window.innerHeight-320,330));
-}
-<?endif;?>
 function showLog(log) {
   logfile = log;
   $('span.label input[type=checkbox]').prop('checked',true);
@@ -56,10 +51,6 @@ $(function() {
       showLog(logfile);
     }
   });
-<?if (_var($display,'resize')):?>
-  resize();
-  $(window).bind('resize',function(){resize();});
-<?endif;?>
   showLog(logfile);
 });
 </script>
