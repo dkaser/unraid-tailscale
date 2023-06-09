@@ -19,10 +19,7 @@ if [ ! -d /boot/config/plugins/tailscale/state ] && [ ! -f $TS_PLUGIN_CONFIG ]; 
     cp $TS_PLUGIN_ROOT/tailscale.cfg.default $TS_PLUGIN_CONFIG
 fi
 
-if [ -f $TS_PLUGIN_CONFIG ]; then
-    logger -t unraid-tailscale < $TS_PLUGIN_CONFIG
-    source $TS_PLUGIN_CONFIG
-fi
+$TS_PLUGIN_ROOT/pre-startup.php
 
 if [[ $SYSCTL_IP_FORWARD ]]; then
     log "Enabling IP Forwarding"
@@ -45,6 +42,8 @@ fi
 /etc/rc.d/rc.tailscale restart
 
 sleep 10
+
+$TS_PLUGIN_ROOT/post-startup.php
 
 case "$ACCEPT_ROUTES" in
 '0')
