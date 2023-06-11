@@ -4,6 +4,8 @@ fi
 
 upgradepkg --install-new --reinstall {{ configDirectory }}/tailscale-utils-{{ packageVersion }}.txz
 
+/etc/rc.d/rc.rsyslogd restart
+
 mkdir -p {{ pluginDirectory }}/bin
 tar xzf {{ configDirectory }}/{{ tailscaleVersion }}.tgz --strip-components 1 -C {{ pluginDirectory }}/bin
 
