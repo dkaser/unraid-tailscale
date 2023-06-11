@@ -5,8 +5,8 @@
     "version": "2023.06.11",
     "tailscaleVersion": "tailscale_1.42.0_amd64",
     "tailscaleMD5": "46a6145621bdb355d14301754aceb8a8",
-    "packageVersion": "2023.06.11",
-    "packageMD5": "68cb4a5a44dbc5ab7c5f449644771a94",
+    "packageVersion": "2023.06.11a",
+    "packageMD5": "e73a904b84fa7f66c48f4107988d66a6",
     "pluginDirectory": "/usr/local/emhttp/plugins/tailscale",
     "configDirectory": "/boot/config/plugins/tailscale"
 }
