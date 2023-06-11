@@ -1,13 +1,11 @@
 #!/usr/bin/php -q
 <?php
 
-include("include/common.php");
+require "include/common.php";
 
 // Log current settings
-foreach($tailscale_config as $key => $value) {
-  logmsg("Setting: $key: $value");
+foreach ($tailscale_config as $key => $value) {
+    logmsg("Setting: {$key}: {$value}");
 }
 
-include("include/set-tailscale-interface.php");
-
-?>
+require "include/set-tailscale-interface.php";
