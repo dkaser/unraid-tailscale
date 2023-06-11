@@ -25,7 +25,7 @@ Type="xmenu"
     }
 </style>
 <script>
-    var logfile = "/var/log/tailscale";
+    var logfile = "/var/log/syslog";
 
     function showLog(log) {
         logfile = log;
@@ -43,7 +43,7 @@ Type="xmenu"
         }, function(data) {
             clearTimeout(timers.syslog);
             const result = data.split(/\r?\n/);
-            const filtered = result.reverse();
+            const filtered = result.filter(line => line.includes('tailscale')).reverse();
 
             $('pre.up').html(filtered.join('\r\n'));
             $('div.spinner.fixed').hide('slow');

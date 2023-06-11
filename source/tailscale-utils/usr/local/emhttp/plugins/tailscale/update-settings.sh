@@ -41,9 +41,7 @@ fi
 
 /etc/rc.d/rc.tailscale restart
 
-sleep 10
-
-$TS_PLUGIN_ROOT/post-startup.php
+sleep 60
 
 case "$ACCEPT_ROUTES" in
 '0')
@@ -70,3 +68,5 @@ case "$ACCEPT_DNS" in
 *)
     log "Ignoring accept-dns"
 esac
+
+$TS_PLUGIN_ROOT/post-startup.php

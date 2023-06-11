@@ -1,3 +1,6 @@
+###2023.06.11###
+- Increase delay when restarting Unraid services
+
 ###2023.06.09###
 - Add support for Unraid 6.12
 
@@ -14,9 +17,5 @@
 - Added info page to settings
 - Moved Tailscale to Network Services section of Settings
 - Updated Tailscale to 1.40.1
-
-###2023.04.26a###
-- Update Tailscale to 1.40.0
-- Improve diagnostic output
 
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
