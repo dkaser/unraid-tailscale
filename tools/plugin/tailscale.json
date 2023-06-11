@@ -2,7 +2,7 @@
     "name": "tailscale",
     "author": "Derek Kaser",
     "githubRepository": "dkaser/unraid-tailscale",
-    "version": "2023.06.11",
+    "version": "2023.06.11a",
     "tailscaleVersion": "tailscale_1.42.0_amd64",
     "tailscaleMD5": "46a6145621bdb355d14301754aceb8a8",
     "packageVersion": "2023.06.11a",

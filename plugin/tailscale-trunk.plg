@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2023.06.11"
+  version="2023.06.11a"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/plugin/tailscale-trunk.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -77,7 +77,7 @@ rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2023.06.11"
+echo " Version: 2023.06.11a"
 echo "----------------------------------------------------"
 echo ""
 ]]>
