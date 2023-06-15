@@ -11,6 +11,7 @@ $ifname = 'tailscale1';
 $config_file        = '/boot/config/plugins/tailscale/tailscale.cfg';
 $defaults_file      = '/usr/local/emhttp/plugins/tailscale/settings.json';
 $network_extra_file = '/boot/config/network-extra.cfg';
+$restart_command    = '/usr/local/emhttp/webGui/scripts/reload_services';
 
 // Load configuration file
 if (file_exists($config_file)) {
@@ -24,3 +25,5 @@ foreach ($settings_config as $key => $value) {
         $tailscale_config[$key] = $value['default'];
     }
 }
+
+$configure_extra_interfaces = file_exists($restart_command);

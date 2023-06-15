@@ -19,6 +19,7 @@ if [ ! -d /boot/config/plugins/tailscale/state ] && [ ! -f $TS_PLUGIN_CONFIG ]; 
     cp $TS_PLUGIN_ROOT/tailscale.cfg.default $TS_PLUGIN_CONFIG
 fi
 
+log "Running pre-startup script"
 $TS_PLUGIN_ROOT/pre-startup.php
 
 if [[ $SYSCTL_IP_FORWARD ]]; then
@@ -69,4 +70,5 @@ case "$ACCEPT_DNS" in
     log "Ignoring accept-dns"
 esac
 
+log "Running post-startup script"
 $TS_PLUGIN_ROOT/post-startup.php

@@ -7,5 +7,6 @@ require "include/common.php";
 foreach ($tailscale_config as $key => $value) {
     logmsg("Setting: {$key}: {$value}");
 }
-
-require "include/set-tailscale-interface.php";
+if ($configure_extra_interfaces) {
+    require "include/set-tailscale-interface.php";
+}

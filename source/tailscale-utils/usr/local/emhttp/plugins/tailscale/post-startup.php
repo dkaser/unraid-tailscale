@@ -3,5 +3,7 @@
 
 require "include/common.php";
 
-logmsg("Restarting Unraid services");
-exec('/usr/local/emhttp/webGui/scripts/reload_services');
+if ($configure_extra_interfaces) {
+    logmsg("Restarting Unraid services");
+    exec($restart_command);
+}
