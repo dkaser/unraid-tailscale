@@ -16,7 +16,7 @@ start_tailscaled() {
 
 stop_tailscaled() {
   log "Stopping tailscaled."
-  killall --ns $$ --wait /usr/local/sbin/tailscaled 2> /dev/null
+  killall --ns $$ --wait tailscaled 2> /dev/null
 }
 
 restart_tailscaled() {
