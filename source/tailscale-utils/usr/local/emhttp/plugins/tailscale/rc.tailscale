@@ -16,7 +16,7 @@ start_tailscaled() {
 
 stop_tailscaled() {
   log "Stopping tailscaled."
-  /usr/bin/pkill --ns $$ --euid root -f "^/usr/local/sbin/tailscaled" 2> /dev/null 
+  killall --ns $$ --wait /usr/local/sbin/tailscaled 2> /dev/null
 }
 
 restart_tailscaled() {

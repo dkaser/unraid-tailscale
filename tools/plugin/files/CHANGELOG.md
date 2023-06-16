@@ -1,5 +1,6 @@
-###2023.06.15###
+###2023.06.16###
 - Fix notification when running on Unraid pre-6.12
+- Wait for tailscaled to stop when restarting service
 
 ###2023.06.11a###
 - Increase delay when restarting Unraid services
