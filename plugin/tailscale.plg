@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2023.06.15"
+  version="2023.06.16"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/plugin/tailscale.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -12,8 +12,9 @@
 
 <CHANGES>
 <![CDATA[
-###2023.06.15###
+###2023.06.16###
 - Fix notification when running on Unraid pre-6.12
+- Wait for tailscaled to stop when restarting service
 
 ###2023.06.11a###
 - Increase delay when restarting Unraid services
@@ -38,9 +39,9 @@ For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 <MD5>46a6145621bdb355d14301754aceb8a8</MD5>
 </FILE>
 
-<FILE Name="/boot/config/plugins/tailscale/tailscale-utils-2023.06.15.txz">
-<URL>https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/packages/tailscale-utils-2023.06.15.txz</URL>
-<MD5>01571215cee9680d9781a372707a3cf4</MD5>
+<FILE Name="/boot/config/plugins/tailscale/tailscale-utils-2023.06.16.txz">
+<URL>https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/packages/tailscale-utils-2023.06.16.txz</URL>
+<MD5>f6c71bddd471614b41910cc85473ba5c</MD5>
 </FILE>
 
 <!--
@@ -53,7 +54,7 @@ if [ -d "/usr/local/emhttp/plugins/tailscale" ]; then
     rm -rf /usr/local/emhttp/plugins/tailscale
 fi
 
-upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/tailscale-utils-2023.06.15.txz
+upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/tailscale-utils-2023.06.16.txz
 
 /etc/rc.d/rc.rsyslogd restart
 
@@ -68,13 +69,13 @@ echo "starting tailscaled..."
 /usr/local/emhttp/plugins/tailscale/restart.sh
 
 # cleanup old versions
-rm -f $(ls /boot/config/plugins/tailscale/tailscale-utils-*.txz 2>/dev/null | grep -v '2023.06.15')
+rm -f $(ls /boot/config/plugins/tailscale/tailscale-utils-*.txz 2>/dev/null | grep -v '2023.06.16')
 rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.42.0_amd64')
 
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2023.06.15"
+echo " Version: 2023.06.16"
 echo "----------------------------------------------------"
 echo ""
 ]]>
@@ -93,7 +94,7 @@ The 'remove' script.
 rm /usr/local/sbin/tailscale
 rm /usr/local/sbin/tailscaled
 
-removepkg tailscale-utils-2023.06.15
+removepkg tailscale-utils-2023.06.16
 
 rm -rf /usr/local/emhttp/plugins/tailscale
 rm -rf /boot/config/plugins/tailscale
