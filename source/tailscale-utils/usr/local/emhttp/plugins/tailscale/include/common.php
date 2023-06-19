@@ -16,6 +16,8 @@ $restart_command    = '/usr/local/emhttp/webGui/scripts/reload_services';
 // Load configuration file
 if (file_exists($config_file)) {
     $tailscale_config = parse_ini_file($config_file);
+} else {
+    $tailscale_config = array();
 }
 
 // Load default settings and assign values
