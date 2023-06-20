@@ -12,8 +12,6 @@ if (file_exists($network_extra_file)) {
     $write_file = false;
 }
 
-var_dump($include_array);
-
 $in_array = in_array($ifname, $include_array);
 
 if ($in_array != $tailscale_config["INCLUDE_INTERFACE"]) {
