@@ -1,3 +1,6 @@
+###2023.06.20###
+- Add workaround for SSH startup on Unraid 6.12.0
+
 ###2023.06.16a###
 - Fix notification when running on Unraid pre-6.12
 - Wait for tailscaled to stop when restarting service
