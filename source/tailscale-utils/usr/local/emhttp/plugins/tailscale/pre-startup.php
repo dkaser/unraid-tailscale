@@ -5,8 +5,6 @@ require "include/common.php";
 
 $version = parse_ini_file('/etc/unraid-version');
 
-print $version['version'];
-
 // Log current settings
 foreach ($tailscale_config as $key => $value) {
     logmsg("Setting: {$key}: {$value}");
