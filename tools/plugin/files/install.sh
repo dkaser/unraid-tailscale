@@ -2,9 +2,7 @@ if [ -d "{{ pluginDirectory }}" ]; then
     rm -rf {{ pluginDirectory }}
 fi
 
-upgradepkg --install-new --reinstall {{ configDirectory }}/tailscale-utils-{{ packageVersion }}.txz
-
-/etc/rc.d/rc.rsyslogd restart
+upgradepkg --install-new --reinstall {{ configDirectory }}/unraid-tailscale-utils-{{ packageVersion }}.txz
 
 mkdir -p {{ pluginDirectory }}/bin
 tar xzf {{ configDirectory }}/{{ tailscaleVersion }}.tgz --strip-components 1 -C {{ pluginDirectory }}/bin
@@ -17,7 +15,8 @@ echo "starting tailscaled..."
 {{ pluginDirectory }}/restart.sh
 
 # cleanup old versions
-rm -f $(ls /boot/config/plugins/{{ name }}/tailscale-utils-*.txz 2>/dev/null | grep -v '{{ packageVersion }}')
+rm -f /boot/config/plugins/{{ name }}/tailscale-utils-*.txz
+rm -f $(ls /boot/config/plugins/{{ name }}/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '{{ packageVersion }}')
 rm -f $(ls /boot/config/plugins/{{ name }}/*.tgz 2>/dev/null | grep -v '{{ tailscaleVersion }}')
 
 echo ""
