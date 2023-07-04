@@ -12,7 +12,6 @@ ln -s {{ pluginDirectory }}/bin/tailscale /usr/local/sbin/tailscale
 ln -s {{ pluginDirectory }}/bin/tailscaled /usr/local/sbin/tailscaled
 
 # start tailscaled
-echo "starting tailscaled..."
 {{ pluginDirectory }}/restart.sh
 
 # cleanup old versions
