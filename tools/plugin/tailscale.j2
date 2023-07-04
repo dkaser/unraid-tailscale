@@ -21,9 +21,14 @@
 <MD5>{{ tailscaleMD5 }}</MD5>
 </FILE>
 
-<FILE Name="{{ configDirectory }}/unraid-tailscale-utils-{{ packageVersion }}.txz">
-<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/{{ packageVersion }}/unraid-tailscale-utils-{{ packageVersion }}.txz</URL>
+<FILE Name="{{ configDirectory }}/unraid-tailscale-utils-{{ packageVersion }}-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/{{ packageVersion }}/unraid-tailscale-utils-{{ packageVersion }}-noarch-1.txz</URL>
 <MD5>{{ packageMD5 }}</MD5>
+</FILE>
+
+<FILE Name="{{ configDirectory }}/unraid-plugin-diagnostics-{{ diagVersion }}-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/{{ diagVersion }}/unraid-plugin-diagnostics-{{ diagVersion }}-noarch-1.txz</URL>
+<MD5>{{ diagMD5 }}</MD5>
 </FILE>
 
 <!--
