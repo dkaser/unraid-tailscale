@@ -1,4 +1,4 @@
-###2023.07.04a###
+###2023.07.04b###
 - Add tailnet lock support
 - Add diagnostic collection utility
 - Cleanup output on server startup
