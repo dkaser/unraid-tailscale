@@ -1,4 +1,4 @@
-###2023.07.09###
+###2023.07.09b###
 - Move logs to dedicated files instead of syslog
 - Add tailscale-watcher, applies settings when tailscale1 IP changes
 - Add CLI diagnostics command
