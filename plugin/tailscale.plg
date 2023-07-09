@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2023.07.05b"
+  version="2023.07.09"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/plugin/tailscale.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -12,6 +12,11 @@
 
 <CHANGES>
 <![CDATA[
+###2023.07.09###
+- Move logs to dedicated files instead of syslog
+- Add tailscale-watcher, applies settings when tailscale1 IP changes
+- Add CLI diagnostics command
+
 ###2023.07.05b###
 - Add tailnet lock support
 - Add diagnostic collection utility
@@ -23,10 +28,6 @@
 ###2023.06.20###
 - Add workaround for SSH startup on Unraid 6.12.0
 
-###2023.06.16a###
-- Fix notification when running on Unraid pre-6.12
-- Wait for tailscaled to stop when restarting service
-
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 ]]>
 </CHANGES>
@@ -36,14 +37,14 @@ For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 <MD5>7b73bc402d0106c3596915f0ea7b3f26</MD5>
 </FILE>
 
-<FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-1.1.2-noarch-1.txz">
-<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/1.1.2/unraid-tailscale-utils-1.1.2-noarch-1.txz</URL>
-<MD5>078026820333a8e03d5d532828c603c6</MD5>
+<FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-1.2.0-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/1.2.0/unraid-tailscale-utils-1.2.0-noarch-1.txz</URL>
+<MD5>c4ea0c085ec4086a528afaf7cdb1f195</MD5>
 </FILE>
 
-<FILE Name="/boot/config/plugins/tailscale/unraid-plugin-diagnostics-1.1.0-noarch-1.txz">
-<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/1.1.0/unraid-plugin-diagnostics-1.1.0-noarch-1.txz</URL>
-<MD5>083db78f0cd94d93beb98f3c59f8e611</MD5>
+<FILE Name="/boot/config/plugins/tailscale/unraid-plugin-diagnostics-1.2.0-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/1.2.0/unraid-plugin-diagnostics-1.2.0-noarch-1.txz</URL>
+<MD5>552a7317ed38e82f71912949d6bbb6f3</MD5>
 </FILE>
 
 <!--
@@ -56,8 +57,8 @@ if [ -d "/usr/local/emhttp/plugins/tailscale" ]; then
     rm -rf /usr/local/emhttp/plugins/tailscale
 fi
 
-upgradepkg --install-new /boot/config/plugins/tailscale/unraid-plugin-diagnostics-1.1.0-noarch-1.txz
-upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-1.1.2-noarch-1.txz
+upgradepkg --install-new /boot/config/plugins/tailscale/unraid-plugin-diagnostics-1.2.0-noarch-1.txz
+upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-1.2.0-noarch-1.txz
 
 mkdir -p /usr/local/emhttp/plugins/tailscale/bin
 tar xzf /boot/config/plugins/tailscale/tailscale_1.44.0_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
@@ -70,14 +71,14 @@ ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscaled /usr/local/sbin/tailsca
 
 # cleanup old versions
 rm -f /boot/config/plugins/tailscale/tailscale-utils-*.txz
-rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '1.1.2')
-rm -f $(ls /boot/config/plugins/tailscale/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '1.1.0')
+rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '1.2.0')
+rm -f $(ls /boot/config/plugins/tailscale/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '1.2.0')
 rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.44.0_amd64')
 
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2023.07.05b"
+echo " Version: 2023.07.09"
 echo "----------------------------------------------------"
 echo ""
 ]]>
@@ -96,7 +97,7 @@ The 'remove' script.
 rm /usr/local/sbin/tailscale
 rm /usr/local/sbin/tailscaled
 
-removepkg unraid-tailscale-utils-1.1.2
+removepkg unraid-tailscale-utils-1.2.0
 
 rm -rf /usr/local/emhttp/plugins/tailscale
 rm -rf /boot/config/plugins/tailscale

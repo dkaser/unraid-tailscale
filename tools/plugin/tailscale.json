@@ -2,13 +2,13 @@
     "name": "tailscale",
     "author": "Derek Kaser",
     "githubRepository": "dkaser/unraid-tailscale",
-    "version": "2023.07.05b",
+    "version": "2023.07.09",
     "tailscaleVersion": "tailscale_1.44.0_amd64",
     "tailscaleMD5": "7b73bc402d0106c3596915f0ea7b3f26",
-    "packageVersion": "1.1.2",
-    "packageMD5": "078026820333a8e03d5d532828c603c6",
-    "diagVersion": "1.1.0",
-    "diagMD5": "083db78f0cd94d93beb98f3c59f8e611",
+    "packageVersion": "1.2.0",
+    "packageMD5": "c4ea0c085ec4086a528afaf7cdb1f195",
+    "diagVersion": "1.2.0",
+    "diagMD5": "552a7317ed38e82f71912949d6bbb6f3",
     "pluginDirectory": "/usr/local/emhttp/plugins/tailscale",
     "configDirectory": "/boot/config/plugins/tailscale"
 }
