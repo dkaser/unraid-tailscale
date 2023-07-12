@@ -1,3 +1,6 @@
+###2023.07.12###
+- Fix permissions issue on logrotate config
+
 ###2023.07.09b###
 - Move logs to dedicated files instead of syslog
 - Add tailscale-watcher, applies settings when tailscale1 IP changes
