@@ -5,6 +5,9 @@ fi
 upgradepkg --install-new {{ configDirectory }}/unraid-plugin-diagnostics-{{ diagVersion }}-noarch-1.txz
 upgradepkg --install-new --reinstall {{ configDirectory }}/unraid-tailscale-utils-{{ packageVersion }}-noarch-1.txz
 
+chmod 0644 /etc/logrotate.d/tailscale
+chown root:root /etc/logrotate.d/tailscale
+
 mkdir -p {{ pluginDirectory }}/bin
 tar xzf {{ configDirectory }}/{{ tailscaleVersion }}.tgz --strip-components 1 -C {{ pluginDirectory }}/bin
 
