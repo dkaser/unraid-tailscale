@@ -1,6 +1,7 @@
-###2023.07.17###
+###2023.07.17a###
 - Add usage data collection
-- Improve handling of ACCEPT_DNS and ACCEPT_ROUTES
+- Fix handling of ACCEPT_DNS and ACCEPT_ROUTES
+- Improve handling of various settings
 
 ###2023.07.12###
 - Fix permissions issue on logrotate config
