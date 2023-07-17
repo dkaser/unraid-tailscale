@@ -1,6 +1,6 @@
-###2023.07.15###
+###2023.07.17###
 - Add usage data collection
-- Check result when changing tailscale settings
+- Improve handling of ACCEPT_DNS and ACCEPT_ROUTES
 
 ###2023.07.12###
 - Fix permissions issue on logrotate config
