@@ -1,3 +1,6 @@
+###2023.07.31###
+- Update Tailscale to 1.46.1
+
 ###2023.07.21###
 - Update Tailscale to 1.46.0
 
@@ -9,8 +12,5 @@
 - Add usage data collection
 - Fix handling of ACCEPT_DNS and ACCEPT_ROUTES
 - Improve handling of various settings
-
-###2023.07.12###
-- Fix permissions issue on logrotate config
 
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
