@@ -1,3 +1,7 @@
+###2023.09.14###
+- Update Tailscale to 1.48.2
+- Add support for new interface in upcoming Tailscale releases
+
 ###2023.08.22###
 - Update Tailscale to 1.48.1
 
@@ -6,9 +10,5 @@
 
 ###2023.07.21###
 - Update Tailscale to 1.46.0
-
-###2023.07.18###
-- Update Tailscale to 1.44.2
-- Add Tailscale SSH support
 
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
