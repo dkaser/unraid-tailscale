@@ -1,6 +1,5 @@
-###2023.09.14###
+###2023.09.14a###
 - Update Tailscale to 1.48.2
-- Add support for new interface in upcoming Tailscale releases
 
 ###2023.08.22###
 - Update Tailscale to 1.48.1
