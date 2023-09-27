@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2023.09.14a"
+  version="2023.09.26"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/plugin/tailscale-trunk.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -12,6 +12,10 @@
 
 <CHANGES>
 <![CDATA[
+###2023.09.26###
+- Update Tailscale to 1.50.0
+- New Tailscale web interface
+
 ###2023.09.14a###
 - Update Tailscale to 1.48.2
 
@@ -21,21 +25,18 @@
 ###2023.07.31###
 - Update Tailscale to 1.46.1
 
-###2023.07.21###
-- Update Tailscale to 1.46.0
-
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 ]]>
 </CHANGES>
 
-<FILE Name="/boot/config/plugins/tailscale/tailscale_1.48.2_amd64.tgz">
-<URL>https://pkgs.tailscale.com/stable/tailscale_1.48.2_amd64.tgz</URL>
-<MD5>0147eb893913ba040ebe8c68bade601e</MD5>
+<FILE Name="/boot/config/plugins/tailscale/tailscale_1.50.0_amd64.tgz">
+<URL>https://pkgs.tailscale.com/stable/tailscale_1.50.0_amd64.tgz</URL>
+<MD5>01c85ab4c634a190d35278190fca935b</MD5>
 </FILE>
 
-<FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-1.3.0-noarch-1.txz">
-<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/1.3.0/unraid-tailscale-utils-1.3.0-noarch-1.txz</URL>
-<MD5>7aaa936717edb291fa6f80dce9eaf252</MD5>
+<FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-1.4.0-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/1.4.0/unraid-tailscale-utils-1.4.0-noarch-1.txz</URL>
+<MD5>1cacdd64c49a1373b4a3fb6881764430</MD5>
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/unraid-plugin-diagnostics-1.2.2-noarch-1.txz">
@@ -54,30 +55,30 @@ if [ -d "/usr/local/emhttp/plugins/tailscale" ]; then
 fi
 
 upgradepkg --install-new /boot/config/plugins/tailscale/unraid-plugin-diagnostics-1.2.2-noarch-1.txz
-upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-1.3.0-noarch-1.txz
+upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-1.4.0-noarch-1.txz
 
 mkdir -p /usr/local/emhttp/plugins/tailscale/bin
-tar xzf /boot/config/plugins/tailscale/tailscale_1.48.2_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
+tar xzf /boot/config/plugins/tailscale/tailscale_1.50.0_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
 
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscale /usr/local/sbin/tailscale
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscaled /usr/local/sbin/tailscaled
 
 mkdir -p /var/local/emhttp/plugins/tailscale
-echo "VERSION=2023.09.14a" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "VERSION=2023.09.26" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
 
 # start tailscaled
 /usr/local/emhttp/plugins/tailscale/restart.sh
 
 # cleanup old versions
 rm -f /boot/config/plugins/tailscale/tailscale-utils-*.txz
-rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '1.3.0')
+rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '1.4.0')
 rm -f $(ls /boot/config/plugins/tailscale/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '1.2.2')
-rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.48.2_amd64')
+rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.50.0_amd64')
 
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2023.09.14a"
+echo " Version: 2023.09.26"
 echo "----------------------------------------------------"
 echo ""
 ]]>
@@ -96,7 +97,7 @@ The 'remove' script.
 rm /usr/local/sbin/tailscale
 rm /usr/local/sbin/tailscaled
 
-removepkg unraid-tailscale-utils-1.3.0
+removepkg unraid-tailscale-utils-1.4.0
 
 rm -rf /usr/local/emhttp/plugins/tailscale
 rm -rf /boot/config/plugins/tailscale
