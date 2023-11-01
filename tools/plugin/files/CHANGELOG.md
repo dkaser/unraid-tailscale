@@ -1,3 +1,6 @@
+###2023.10.31###
+- Update Tailscale to 1.52.0
+
 ###2023.10.29###
 - Update Tailscale to 1.50.1
 - Fix nginx hang when Tailscale restarts
