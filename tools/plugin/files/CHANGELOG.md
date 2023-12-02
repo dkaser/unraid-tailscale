@@ -1,4 +1,5 @@
-###2023.11.19###
+###2023.12.02###
+- Update Tailscale to 1.54.1
 - Protect local IPs from advertised subnets
 - Save diagnostics to flash drive when running from CLI
 
