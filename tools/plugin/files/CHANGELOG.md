@@ -1,6 +1,5 @@
-###2023.12.14###
-- Update Tailscale to 1.56.0
-- Prevent e-mails from being sent when Unraid starts
+###2023.12.28###
+- Update Tailscale to 1.56.1
 
 ###2023.12.02###
 - Update Tailscale to 1.54.1
