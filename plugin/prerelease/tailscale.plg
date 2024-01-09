@@ -5,7 +5,7 @@
   name="tailscale"
   author="Derek Kaser"
   version="2024.01.09"
-  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/plugin/tailscale.plg"
+  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/prerelease/plugin/prerelease/tailscale.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
 >
