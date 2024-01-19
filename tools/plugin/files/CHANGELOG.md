@@ -1,3 +1,7 @@
+###2024.01.18###
+- Update Tailscale to 1.58.0
+- Add warning to main settings page if NetBIOS is enabled with SMB
+
 ###2024.01.09###
 - Add option to disable Tailscale
 - Add option to change Wireguard port
@@ -12,8 +16,5 @@
 - Update Tailscale to 1.54.1
 - Protect local IPs from advertised subnets
 - Save diagnostics to flash drive when running from CLI
-
-###2023.11.18###
-- Update Tailscale to 1.54.0
 
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
