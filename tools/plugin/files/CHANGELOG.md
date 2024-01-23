@@ -1,3 +1,7 @@
+###2024.01.23###
+- Update Tailscale to 1.58.1
+- Add localization support
+
 ###2024.01.18###
 - Update Tailscale to 1.58.0
 - Add warning to main settings page if NetBIOS is enabled with SMB
