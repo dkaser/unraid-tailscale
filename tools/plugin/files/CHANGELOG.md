@@ -1,4 +1,4 @@
-###2024.01.23###
+###2024.01.24###
 - Update Tailscale to 1.58.1
 - Add localization support
 
@@ -15,10 +15,5 @@
 
 ###2023.12.28###
 - Update Tailscale to 1.56.1
-
-###2023.12.02###
-- Update Tailscale to 1.54.1
-- Protect local IPs from advertised subnets
-- Save diagnostics to flash drive when running from CLI
 
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
