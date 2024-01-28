@@ -5,12 +5,11 @@
   name="tailscale"
   author="Derek Kaser"
   version="2024.01.24b"
-  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/plugin/trunk/tailscale.plg"
+  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/preview/plugin/tailscale-preview.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
+  min="6.9.2"
 >
-
-<multiLanguage>true</multiLanguage>
 
 <CHANGES>
 <![CDATA[
@@ -71,7 +70,19 @@ ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscale /usr/local/sbin/tailscal
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscaled /usr/local/sbin/tailscaled
 
 mkdir -p /var/local/emhttp/plugins/tailscale
-echo "VERSION=2024.01.24b" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "VERSION=2024.01.24b" > /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "BRANCH=preview" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
+
+# remove other branches (e.g., if switching from main to preview)
+rm -f /boot/config/plugins/tailscale.plg
+rm -f /var/log/plugins/tailscale.plg
+rm -f /boot/config/plugins/tailscale-trunk.plg
+rm -f /var/log/plugins/tailscale-trunk.plg
+
+
+# Update plugin name for non-main branches
+sed -i "s/Tailscale\*\*/Tailscale (Preview)**/" /usr/local/emhttp/plugins/tailscale/README.md
+
 
 # start tailscaled
 /usr/local/emhttp/plugins/tailscale/restart.sh
