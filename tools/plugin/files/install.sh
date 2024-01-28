@@ -12,7 +12,27 @@ ln -s {{ pluginDirectory }}/bin/tailscale /usr/local/sbin/tailscale
 ln -s {{ pluginDirectory }}/bin/tailscaled /usr/local/sbin/tailscaled
 
 mkdir -p /var/local/emhttp/plugins/tailscale
-echo "VERSION={{ version }}" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "VERSION={{ version }}" > /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "BRANCH={{ branch }}" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
+
+# remove other branches (e.g., if switching from main to preview)
+{% if branch != 'main' -%}
+rm -f /boot/config/plugins/tailscale.plg
+rm -f /var/log/plugins/tailscale.plg
+{% endif -%}
+{% if branch != 'preview' -%}
+rm -f /boot/config/plugins/tailscale-preview.plg
+rm -f /var/log/plugins/tailscale-preview.plg
+{% endif -%}
+{% if branch != 'trunk' -%}
+rm -f /boot/config/plugins/tailscale-trunk.plg
+rm -f /var/log/plugins/tailscale-trunk.plg
+{% endif %}
+
+{% if branch != 'main' -%}
+# Update plugin name for non-main branches
+sed -i "s/Tailscale\*\*/Tailscale ({{ branch.capitalize() }})**/" {{ pluginDirectory }}/README.md
+{% endif %}
 
 # start tailscaled
 {{ pluginDirectory }}/restart.sh
