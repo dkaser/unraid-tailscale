@@ -10,5 +10,6 @@
     "diagVersion": "1.3.0",
     "diagMD5": "4666dc0303b39846b8ca54b0ba95d132",
     "pluginDirectory": "/usr/local/emhttp/plugins/tailscale",
-    "configDirectory": "/boot/config/plugins/tailscale"
+    "configDirectory": "/boot/config/plugins/tailscale",
+    "minver": "6.9.2"
 }
