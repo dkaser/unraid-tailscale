@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2024.02.04"
+  version="2024.02.15"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/plugin/tailscale-trunk.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -13,6 +13,9 @@
 
 <CHANGES>
 <![CDATA[
+###2024.02.15###
+- Update Tailscale to 1.60.0
+
 ###2024.02.04###
 - Detect if nginx does not reload correctly after Tailscale comes up
 - Add diagnostic information: ip routing and open ports
@@ -28,20 +31,13 @@
 - Update Tailscale to 1.58.0
 - Add warning to main settings page if NetBIOS is enabled with SMB
 
-###2024.01.09###
-- Add option to disable Tailscale
-- Add option to change Wireguard port
-- Add button to reset Tailscale config
-- Add Tailscale widget to Unraid dashboard
-- Add basic/advanced config toggle to settings page
-
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 ]]>
 </CHANGES>
 
-<FILE Name="/boot/config/plugins/tailscale/tailscale_1.58.2_amd64.tgz">
-<URL>https://pkgs.tailscale.com/stable/tailscale_1.58.2_amd64.tgz</URL>
-<MD5>f15c278461dbba4053be6b2f3ec894a2</MD5>
+<FILE Name="/boot/config/plugins/tailscale/tailscale_1.60.0_amd64.tgz">
+<URL>https://pkgs.tailscale.com/stable/tailscale_1.60.0_amd64.tgz</URL>
+<MD5>1d7f2dd0507d68313453632235acf06f</MD5>
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-1.8.1-noarch-1.txz">
@@ -68,13 +64,13 @@ upgradepkg --install-new /boot/config/plugins/tailscale/unraid-plugin-diagnostic
 upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-1.8.1-noarch-1.txz
 
 mkdir -p /usr/local/emhttp/plugins/tailscale/bin
-tar xzf /boot/config/plugins/tailscale/tailscale_1.58.2_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
+tar xzf /boot/config/plugins/tailscale/tailscale_1.60.0_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
 
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscale /usr/local/sbin/tailscale
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscaled /usr/local/sbin/tailscaled
 
 mkdir -p /var/local/emhttp/plugins/tailscale
-echo "VERSION=2024.02.04" > /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "VERSION=2024.02.15" > /var/local/emhttp/plugins/tailscale/tailscale.ini
 echo "BRANCH=trunk" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
 
 # remove other branches (e.g., if switching from main to preview)
@@ -95,12 +91,12 @@ sed -i "s/Tailscale\*\*/Tailscale (Trunk)**/" /usr/local/emhttp/plugins/tailscal
 rm -f /boot/config/plugins/tailscale/tailscale-utils-*.txz
 rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '1.8.1')
 rm -f $(ls /boot/config/plugins/tailscale/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '1.3.0')
-rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.58.2_amd64')
+rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.60.0_amd64')
 
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2024.02.04"
+echo " Version: 2024.02.15"
 echo "----------------------------------------------------"
 echo ""
 ]]>
