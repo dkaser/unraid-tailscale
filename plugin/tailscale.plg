@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2024.02.15"
+  version="2024.02.29"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/plugin/tailscale.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -13,6 +13,9 @@
 
 <CHANGES>
 <![CDATA[
+###2024.02.29###
+- Update Tailscale to 1.60.1
+
 ###2024.02.15###
 - Update Tailscale to 1.60.0
 
@@ -27,27 +30,23 @@
 - Update Tailscale to 1.58.1
 - Add localization support
 
-###2024.01.18###
-- Update Tailscale to 1.58.0
-- Add warning to main settings page if NetBIOS is enabled with SMB
-
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 ]]>
 </CHANGES>
 
-<FILE Name="/boot/config/plugins/tailscale/tailscale_1.60.0_amd64.tgz">
-<URL>https://pkgs.tailscale.com/stable/tailscale_1.60.0_amd64.tgz</URL>
-<MD5>1d7f2dd0507d68313453632235acf06f</MD5>
+<FILE Name="/boot/config/plugins/tailscale/tailscale_1.60.1_amd64.tgz">
+<URL>https://pkgs.tailscale.com/stable/tailscale_1.60.1_amd64.tgz</URL>
+<SHA256>f035adfeec1567548ce5961d558085de7385e364bbfff6f520555cdf73b10f0b</SHA256>
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-1.8.1-noarch-1.txz">
 <URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/1.8.1/unraid-tailscale-utils-1.8.1-noarch-1.txz</URL>
-<MD5>d0d519cd30ba40b3d5fd4aa18a958632</MD5>
+<SHA256>c117059784ca534fdd133a0bad20f7ebabf929b1467d572a3553a4fcb7d662a0</SHA256>
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/unraid-plugin-diagnostics-1.3.0-noarch-1.txz">
 <URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/1.3.0/unraid-plugin-diagnostics-1.3.0-noarch-1.txz</URL>
-<MD5>4666dc0303b39846b8ca54b0ba95d132</MD5>
+<SHA256>80c076c48217987ba436b979dc4d0f94a7a076fd587a3c016663da0d07130d11</SHA256>
 </FILE>
 
 <!--
@@ -64,13 +63,13 @@ upgradepkg --install-new /boot/config/plugins/tailscale/unraid-plugin-diagnostic
 upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-1.8.1-noarch-1.txz
 
 mkdir -p /usr/local/emhttp/plugins/tailscale/bin
-tar xzf /boot/config/plugins/tailscale/tailscale_1.60.0_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
+tar xzf /boot/config/plugins/tailscale/tailscale_1.60.1_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
 
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscale /usr/local/sbin/tailscale
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscaled /usr/local/sbin/tailscaled
 
 mkdir -p /var/local/emhttp/plugins/tailscale
-echo "VERSION=2024.02.15" > /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "VERSION=2024.02.29" > /var/local/emhttp/plugins/tailscale/tailscale.ini
 echo "BRANCH=main" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
 
 # remove other branches (e.g., if switching from main to preview)
@@ -89,12 +88,12 @@ rm -f /var/log/plugins/tailscale-trunk.plg
 rm -f /boot/config/plugins/tailscale/tailscale-utils-*.txz
 rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '1.8.1')
 rm -f $(ls /boot/config/plugins/tailscale/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '1.3.0')
-rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.60.0_amd64')
+rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.60.1_amd64')
 
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2024.02.15"
+echo " Version: 2024.02.29"
 echo "----------------------------------------------------"
 echo ""
 ]]>
