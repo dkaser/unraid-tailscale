@@ -1,3 +1,8 @@
+###2024.06.14###
+- Update Tailscale to 1.68.1
+- Force log to rotate daily
+- Add translations: de_DE, fr_FR, zh_CN
+
 ###2024.06.12###
 - Update Tailscale to 1.68.0
 
@@ -6,8 +11,5 @@
 
 ###2024.05.15###
 - Disable Tailscale stateful filtering due to bug with containers
-
-###2024.05.11###
-- Update Tailscale to 1.66.1
 
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
