@@ -1,3 +1,6 @@
+###2024.06.17###
+- Filter out spam in Tailscale log that can fill up /var/log
+
 ###2024.06.14###
 - Update Tailscale to 1.68.1
 - Force log to rotate daily
@@ -8,8 +11,5 @@
 
 ###2024.05.20###
 - Update Tailscale to 1.66.4
-
-###2024.05.15###
-- Disable Tailscale stateful filtering due to bug with containers
 
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
