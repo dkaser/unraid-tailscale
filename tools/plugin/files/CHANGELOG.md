@@ -1,3 +1,7 @@
+###2024.07.22###
+- Update Tailscale to 1.70.0
+- Allow config to force port 41641
+
 ###2024.07.04###
 - Update Tailscale to 1.68.2
 
