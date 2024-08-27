@@ -8,6 +8,8 @@ upgradepkg --install-new --reinstall {{ configDirectory }}/unraid-tailscale-util
 mkdir -p {{ pluginDirectory }}/bin
 tar xzf {{ configDirectory }}/{{ tailscaleVersion }}.tgz --strip-components 1 -C {{ pluginDirectory }}/bin
 
+echo "state" > {{ configDirectory }}/.gitignore
+
 ln -s {{ pluginDirectory }}/bin/tailscale /usr/local/sbin/tailscale
 ln -s {{ pluginDirectory }}/bin/tailscaled /usr/local/sbin/tailscaled
 
