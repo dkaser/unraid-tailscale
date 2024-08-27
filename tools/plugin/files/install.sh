@@ -37,6 +37,9 @@ sed -i "s/Tailscale\*\*/Tailscale ({{ branch.capitalize() }})**/" {{ pluginDirec
 # start tailscaled
 {{ pluginDirectory }}/restart.sh
 
+# Bash completion
+tailscale completion bash > /etc/bash_completion.d/tailscale
+
 # cleanup old versions
 rm -f /boot/config/plugins/{{ name }}/tailscale-utils-*.txz
 rm -f $(ls /boot/config/plugins/{{ name }}/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '{{ packageVersion }}')
