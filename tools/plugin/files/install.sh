@@ -2,7 +2,6 @@ if [ -d "{{ pluginDirectory }}" ]; then
     rm -rf {{ pluginDirectory }}
 fi
 
-upgradepkg --install-new {{ configDirectory }}/unraid-plugin-diagnostics-{{ diagVersion }}-noarch-1.txz
 upgradepkg --install-new --reinstall {{ configDirectory }}/unraid-tailscale-utils-{{ packageVersion }}-noarch-1.txz
 
 mkdir -p {{ pluginDirectory }}/bin
@@ -45,7 +44,7 @@ tailscale completion bash > /etc/bash_completion.d/tailscale
 # cleanup old versions
 rm -f /boot/config/plugins/{{ name }}/tailscale-utils-*.txz
 rm -f $(ls /boot/config/plugins/{{ name }}/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '{{ packageVersion }}')
-rm -f $(ls /boot/config/plugins/{{ name }}/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '{{ diagVersion }}')
+rm -f $(ls /boot/config/plugins/{{ name }}/unraid-plugin-diagnostics-*.txz 2>/dev/null)
 rm -f $(ls /boot/config/plugins/{{ name }}/*.tgz 2>/dev/null | grep -v '{{ tailscaleVersion }}')
 
 # check to see if the state file has been backed up to Unraid Connect
