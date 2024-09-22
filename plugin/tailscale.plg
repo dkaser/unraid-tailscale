@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2024.09.18"
+  version="2024.09.22"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/plugin/tailscale.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -13,6 +13,9 @@
 
 <CHANGES>
 <![CDATA[
+###2024.09.22###
+- Fix: user interface hang when log file is missing
+
 ###2024.09.18###
 - Update Tailscale to 1.74.1
 - Enable GRO performance optimizations when available
@@ -24,10 +27,6 @@
 ###2024.09.09###
 - Bug fix
 
-###2024.09.08###
-- Improved log page
-- Various bug fixes
-
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 ]]>
 </CHANGES>
@@ -37,9 +36,9 @@ For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 <SHA256>059f2fbb2895dc8cb137a3fa31be8915326e32dc3403292bc2fd37d8d0372988</SHA256>
 </FILE>
 
-<FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-1.17.0-noarch-1.txz">
-<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/1.17.0/unraid-tailscale-utils-1.17.0-noarch-1.txz</URL>
-<SHA256>808b05c91f079e5e16d97d24c3fc0966026c1e499fb04c58a4b58f983feea3b6</SHA256>
+<FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-1.17.1-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/1.17.1/unraid-tailscale-utils-1.17.1-noarch-1.txz</URL>
+<SHA256>7caca2b9f4eca12326f5ac09582284a8092a793c266f79a3ee9cb2602eee0058</SHA256>
 </FILE>
 
 <!--
@@ -52,7 +51,7 @@ if [ -d "/usr/local/emhttp/plugins/tailscale" ]; then
     rm -rf /usr/local/emhttp/plugins/tailscale
 fi
 
-upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-1.17.0-noarch-1.txz
+upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-1.17.1-noarch-1.txz
 
 mkdir -p /usr/local/emhttp/plugins/tailscale/bin
 tar xzf /boot/config/plugins/tailscale/tailscale_1.74.1_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
@@ -63,7 +62,7 @@ ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscale /usr/local/sbin/tailscal
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscaled /usr/local/sbin/tailscaled
 
 mkdir -p /var/local/emhttp/plugins/tailscale
-echo "VERSION=2024.09.18" > /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "VERSION=2024.09.22" > /var/local/emhttp/plugins/tailscale/tailscale.ini
 echo "BRANCH=main" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
 
 # remove other branches (e.g., if switching from main to preview)
@@ -83,7 +82,7 @@ tailscale completion bash > /etc/bash_completion.d/tailscale
 
 # cleanup old versions
 rm -f /boot/config/plugins/tailscale/tailscale-utils-*.txz
-rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '1.17.0')
+rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '1.17.1')
 rm -f $(ls /boot/config/plugins/tailscale/unraid-plugin-diagnostics-*.txz 2>/dev/null)
 rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.74.1_amd64')
 
@@ -108,7 +107,7 @@ fi
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2024.09.18"
+echo " Version: 2024.09.22"
 echo "----------------------------------------------------"
 echo ""
 ]]>
@@ -127,7 +126,7 @@ The 'remove' script.
 rm /usr/local/sbin/tailscale
 rm /usr/local/sbin/tailscaled
 
-removepkg unraid-tailscale-utils-1.17.0
+removepkg unraid-tailscale-utils-1.17.1
 
 rm -rf /usr/local/emhttp/plugins/tailscale
 rm -f /boot/config/plugins/tailscale/*.tgz

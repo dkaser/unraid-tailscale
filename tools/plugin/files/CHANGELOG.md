@@ -1,3 +1,6 @@
+###2024.09.22###
+- Fix: user interface hang when log file is missing
+
 ###2024.09.18###
 - Update Tailscale to 1.74.1
 - Enable GRO performance optimizations when available
@@ -8,9 +11,5 @@
 
 ###2024.09.09###
 - Bug fix
-
-###2024.09.08###
-- Improved log page
-- Various bug fixes
 
 For older releases, see https://github.com/dkaser/unraid-tailscale/releases
