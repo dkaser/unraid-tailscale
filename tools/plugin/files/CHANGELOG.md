@@ -1,3 +1,8 @@
+###2024.10.01###
+- Migration to official repository
+- Sanitize Unraid Connect and Tailscale domain names in diagnostics
+- Fix restart command if nginx stops responding on Tailscale IP
+
 ###2024.09.22###
 - Fix: user interface hang when log file is missing
 
@@ -9,7 +14,4 @@
 ###2024.09.12###
 - Update Tailscale to 1.74.0
 
-###2024.09.09###
-- Bug fix
-
-For older releases, see https://github.com/dkaser/unraid-tailscale/releases
+For older releases, see https://github.com/unraid/unraid-tailscale/releases
