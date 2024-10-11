@@ -35,7 +35,7 @@ For older releases, see https://github.com/unraid/unraid-tailscale/releases
 
 <FILE Name="/boot/config/plugins/tailscale/tailscale_1.76.0_amd64.tgz">
 <URL>https://pkgs.tailscale.com/stable/tailscale_1.76.0_amd64.tgz</URL>
-<SHA256>059f2fbb2895dc8cb137a3fa31be8915326e32dc3403292bc2fd37d8d0372988</SHA256>
+<SHA256>107ccdab5314a0a7aade16ccc64a650d0f2cb70cf97dbdded0e4fde3ba53e95c</SHA256>
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-2.0.0-noarch-1.txz">
