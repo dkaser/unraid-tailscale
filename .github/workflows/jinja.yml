@@ -9,35 +9,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Template
-        uses: cuchi/jinja2-action@v1.2.2
+      - uses: actions/setup-python@v5
         with:
-          template: tools/plugin/tailscale.j2
-          output_file: plugin/tailscale.plg
-          data_file: tools/plugin/tailscale.json
-          variables: |
-            filename=tailscale
-            branch=main
+          python-version: "3.12"
+          cache: pip
 
       - name: Template
-        uses: cuchi/jinja2-action@v1.2.2
-        with:
-          template: tools/plugin/tailscale.j2
-          output_file: plugin/tailscale-preview.plg
-          data_file: tools/plugin/tailscale.json
-          variables: |
-            filename=tailscale-preview
-            branch=preview
-
-      - name: Template
-        uses: cuchi/jinja2-action@v1.2.2
-        with:
-          template: tools/plugin/tailscale.j2
-          output_file: plugin/tailscale-trunk.plg
-          data_file: tools/plugin/tailscale.json
-          variables: |
-            filename=tailscale-trunk
-            branch=trunk
+        run: |
+          pip install jinja-cli
+          cd tools
+          ./build-plugin.sh
 
       - name: Commit plugin file
         uses: EndBug/add-and-commit@v9
