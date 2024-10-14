@@ -21,10 +21,16 @@ jobs:
           ./build-plugin.sh
 
       - name: Commit plugin file
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: |
-            - plugin/tailscale.plg
-            - plugin/tailscale-preview.plg
-            - plugin/tailscale-trunk.plg
-          default_author: github_actor
+        run: |
+          gh api graphql \
+            -F githubRepository=$GITHUB_REPOSITORY \
+            -F branchName=$BRANCH \
+            -F expectedHeadOid=$(git rev-parse HEAD) \
+            -F commitMessage="template: plugin files" \
+            -F pluginFile[path]="plugin/tailscale.plg" -F pluginFile[contents]=$(base64 -w0 plugin/tailscale.plg) \
+            -F previewFile[path]="plugin/tailscale-preview.plg" -F previewFile[contents]=$(base64 -w0 plugin/tailscale-preview.plg) \
+            -F trunkFile[path]="plugin/tailscale-trunk.plg" -F trunkFile[contents]=$(base64 -w0 plugin/tailscale-trunk.plg) \
+            -F 'query=@.github/api/createCommitOnBranch.gql'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: "main"
