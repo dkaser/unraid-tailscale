@@ -28,7 +28,7 @@ jobs:
             -F githubRepository=$GITHUB_REPOSITORY \
             -F branchName=$BRANCH \
             -F expectedHeadOid=$(git rev-parse HEAD) \
-            -F commitMessage="template: plugin files" \
+            -F commitMessage="ci: template plugin files" \
             -F pluginFile[path]="plugin/tailscale.plg" -F pluginFile[contents]=$(base64 -w0 plugin/tailscale.plg) \
             -F previewFile[path]="plugin/tailscale-preview.plg" -F previewFile[contents]=$(base64 -w0 plugin/tailscale-preview.plg) \
             -F trunkFile[path]="plugin/tailscale-trunk.plg" -F trunkFile[contents]=$(base64 -w0 plugin/tailscale-trunk.plg) \
