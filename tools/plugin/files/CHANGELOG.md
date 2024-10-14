@@ -1,3 +1,6 @@
+###2024.10.10###
+- Update Tailscale to 1.76.0
+
 ###2024.10.01###
 - Migration to official repository
 - Sanitize Unraid Connect and Tailscale domain names in diagnostics
@@ -10,8 +13,5 @@
 - Update Tailscale to 1.74.1
 - Enable GRO performance optimizations when available
 - Sanitize 'tailscale status' output in diagnostics
-
-###2024.09.12###
-- Update Tailscale to 1.74.0
 
 For older releases, see https://github.com/unraid/unraid-tailscale/releases
