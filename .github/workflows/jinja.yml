@@ -33,4 +33,4 @@ jobs:
             -F 'query=@.github/api/createCommitOnBranch.gql'
         env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH: "main"
+          BRANCH: "trunk"
