@@ -1,6 +1,6 @@
-###2024.10.16###
+###2024.10.17###
 
-- Code improvements
+- Update Tailscale to 1.76.1
 
 ###2024.10.10###
 
