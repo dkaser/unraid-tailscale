@@ -1,3 +1,7 @@
+###2024.10.19###
+
+- Fix: cannot access settings page if Tailscale was disabled
+
 ###2024.10.17###
 
 - Update Tailscale to 1.76.1
@@ -11,9 +15,5 @@
 - Migration to official repository
 - Sanitize Unraid Connect and Tailscale domain names in diagnostics
 - Fix restart command if nginx stops responding on Tailscale IP
-
-###2024.09.22###
-
-- Fix: user interface hang when log file is missing
 
 For older releases, see https://github.com/unraid/unraid-tailscale/releases

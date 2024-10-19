@@ -4,7 +4,7 @@
 rm /usr/local/sbin/tailscale
 rm /usr/local/sbin/tailscaled
 
-removepkg unraid-tailscale-utils-{{ packageVersion }}
+removepkg unraid-tailscale-utils
 
 rm -rf {{ pluginDirectory }}
 rm -f {{ configDirectory }}/*.tgz
