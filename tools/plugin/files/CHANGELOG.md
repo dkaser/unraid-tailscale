@@ -1,3 +1,8 @@
+###2024.11.02###
+
+- Add status page
+- Refactor; move plugin code out of global namespace
+
 ###2024.10.19###
 
 - Fix: cannot access settings page if Tailscale was disabled
