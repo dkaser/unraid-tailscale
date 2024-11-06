@@ -1,3 +1,8 @@
+###2024.11.05b###
+
+- Add filtering and ping options to status page
+- Add filtering to lock page
+
 ###2024.11.02###
 
 - Add status page
