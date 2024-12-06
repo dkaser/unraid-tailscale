@@ -1,6 +1,6 @@
-###2024.12.05###
+###2024.12.06###
 
-- Update Tailscale to 1.78.0
+- Update Tailscale to 1.78.1
 
 ###2024.11.13b###
 
