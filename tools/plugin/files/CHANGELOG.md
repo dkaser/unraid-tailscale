@@ -1,3 +1,7 @@
+###2024.12.05###
+
+- Update Tailscale to 1.78.0
+
 ###2024.11.13b###
 
 - Fix advanced toggle on Settings page
@@ -10,10 +14,5 @@
 
 - Add filtering and ping options to status page
 - Add filtering to lock page
-
-###2024.11.02###
-
-- Add status page
-- Refactor; move plugin code out of global namespace
 
 For older releases, see https://github.com/unraid/unraid-tailscale/releases
