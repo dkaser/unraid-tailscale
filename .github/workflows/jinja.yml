@@ -2,7 +2,7 @@ name: Template plugin files
 
 on:
   push:
-    branches:
+    branches-ignore:
       - trunk
 
 jobs:
@@ -35,4 +35,4 @@ jobs:
             -F 'query=@.github/api/createCommitOnBranch.gql'
         env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH: "trunk"
+          BRANCH: ${{ github.ref }}

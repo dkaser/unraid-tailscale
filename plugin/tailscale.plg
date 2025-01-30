@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2024.12.06"
+  version="2025.01.30"
   pluginURL="https://raw.githubusercontent.com/unraid/unraid-tailscale/main/plugin/tailscale.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -13,6 +13,10 @@
 
 <CHANGES>
 <![CDATA[
+###2025.01.30###
+
+- Update Tailscale to 1.80.0
+
 ###2024.12.06###
 
 - Update Tailscale to 1.78.1
@@ -25,19 +29,14 @@
 
 - Update Tailscale to 1.76.6
 
-###2024.11.05b###
-
-- Add filtering and ping options to status page
-- Add filtering to lock page
-
 For older releases, see https://github.com/unraid/unraid-tailscale/releases
 
 ]]>
 </CHANGES>
 
-<FILE Name="/boot/config/plugins/tailscale/tailscale_1.78.1_amd64.tgz">
-<URL>https://pkgs.tailscale.com/stable/tailscale_1.78.1_amd64.tgz</URL>
-<SHA256>3db491bd6800012173cb6b739fa6705272f71da3e622f23639a3a385f2474a89</SHA256>
+<FILE Name="/boot/config/plugins/tailscale/tailscale_1.80.0_amd64.tgz">
+<URL>https://pkgs.tailscale.com/stable/tailscale_1.80.0_amd64.tgz</URL>
+<SHA256>083b1fccbc7c34a6e284ada8b28cb6e832669b9f86cfe1efc31cb2530cff016b</SHA256>
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-2.2.14-noarch-1.txz">
@@ -58,7 +57,7 @@ fi
 upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-2.2.14-noarch-1.txz
 
 mkdir -p /usr/local/emhttp/plugins/tailscale/bin
-tar xzf /boot/config/plugins/tailscale/tailscale_1.78.1_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
+tar xzf /boot/config/plugins/tailscale/tailscale_1.80.0_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
 
 echo "state" > /boot/config/plugins/tailscale/.gitignore
 
@@ -66,7 +65,7 @@ ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscale /usr/local/sbin/tailscal
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscaled /usr/local/sbin/tailscaled
 
 mkdir -p /var/local/emhttp/plugins/tailscale
-echo "VERSION=2024.12.06" > /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "VERSION=2025.01.30" > /var/local/emhttp/plugins/tailscale/tailscale.ini
 echo "BRANCH=main" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
 
 # remove other branches (e.g., if switching from main to preview)
@@ -88,7 +87,7 @@ tailscale completion bash > /etc/bash_completion.d/tailscale
 rm -f /boot/config/plugins/tailscale/tailscale-utils-*.txz
 rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '2.2.14')
 rm -f $(ls /boot/config/plugins/tailscale/unraid-plugin-diagnostics-*.txz 2>/dev/null)
-rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.78.1_amd64')
+rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.80.0_amd64')
 
 # check to see if the state file has been backed up to Unraid Connect
 if [ -d "/boot/.git" ]; then
@@ -111,7 +110,7 @@ fi
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2024.12.06"
+echo " Version: 2025.01.30"
 echo "----------------------------------------------------"
 echo ""
 ]]>
