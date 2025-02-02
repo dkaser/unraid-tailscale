@@ -12,12 +12,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@master
 
-      - name: Get full release object
+      - name: Get release info
         run: |
-          RELEASE_JSON=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}")
+          REPO_NAME = $(echo "${{github.repository}}" | cut -d "/" -f 2)
+          RELEASE_JSON=$(gh api graphql \
+            -F owner=$RELEASE_OWNER \
+            -F name=$REPO_NAME \
+            -F tag=$RELEASE_TAG \
+            -F 'query=@.github/api/getRelease.gql')
 
-          echo "Latest release name: $RELEASE_JSON"
+          echo "Info: $RELEASE_JSON"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_OWNER: ${{ github.repository_owner }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
 
       - name: Run latest-tag
         uses: EndBug/latest-tag@v1
