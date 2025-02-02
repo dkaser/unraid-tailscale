@@ -14,7 +14,7 @@ jobs:
 
       - name: Get release info
         run: |
-          REPO_NAME = $(echo "${{github.repository}}" | cut -d "/" -f 2)
+          REPO_NAME=$(echo "${{github.repository}}" | cut -d "/" -f 2)
           RELEASE_JSON=$(gh api graphql \
             -F owner=$RELEASE_OWNER \
             -F name=$REPO_NAME \
