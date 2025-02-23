@@ -1,3 +1,7 @@
+###2025.02.23###
+
+- Update Tailscale to 1.80.2
+
 ###2025.01.30###
 
 - Update Tailscale to 1.80.0
