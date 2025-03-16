@@ -1,3 +1,7 @@
+###2025.03.16###
+- Improved login flow
+- Allow searching for exit nodes
+
 ###2025.03.05###
 
 - Update Tailscale to 1.80.3
