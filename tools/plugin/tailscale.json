@@ -9,5 +9,5 @@
     "packageSHA256": "1dd57a02a76bd27ce98ce510557c69f7b5daf9fe9ff7ca85ebc89903a851a63e",
     "pluginDirectory": "/usr/local/emhttp/plugins/tailscale",
     "configDirectory": "/boot/config/plugins/tailscale",
-    "minver": "6.11.5"
+    "minver": "6.12.0"
 }

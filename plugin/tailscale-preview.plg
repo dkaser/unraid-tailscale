@@ -8,7 +8,7 @@
   pluginURL="https://raw.githubusercontent.com/unraid/unraid-tailscale/preview/plugin/tailscale-preview.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
-  min="6.11.5"
+  min="6.12.0"
 >
 
 <CHANGES>
