@@ -1,3 +1,7 @@
+###2025.05.06###
+
+- Monitor serve config for port conflicts with WebGUI
+
 ###2025.04.17###
 
 - Update Tailscale to 1.82.5
@@ -11,10 +15,5 @@
 ###2025.03.16###
 - Improved login flow
 - Allow searching for exit nodes
-
-###2025.03.05###
-
-- Update Tailscale to 1.80.3
-- New configuration interface
 
 For older releases, see https://github.com/unraid/unraid-tailscale/releases
