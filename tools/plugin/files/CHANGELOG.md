@@ -1,3 +1,7 @@
+###2025.05.08###
+
+- Fix: advertising exit node on 7.1
+
 ###2025.05.06a###
 
 - Monitor serve config for port conflicts with WebGUI
@@ -11,9 +15,5 @@
 ###2025.03.28###
 
 - Update Tailscale to 1.82.0
-
-###2025.03.16###
-- Improved login flow
-- Allow searching for exit nodes
 
 For older releases, see https://github.com/unraid/unraid-tailscale/releases
