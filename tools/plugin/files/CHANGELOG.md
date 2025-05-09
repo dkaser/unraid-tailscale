@@ -16,4 +16,4 @@
 
 - Update Tailscale to 1.82.0
 
-For older releases, see https://github.com/unraid/unraid-tailscale/releases
+For older releases, see https://github.com/{{ githubRepository }}/releases
