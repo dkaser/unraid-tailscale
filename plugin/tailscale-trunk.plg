@@ -5,7 +5,7 @@
   name="tailscale"
   author="Derek Kaser"
   version="2025.05.08"
-  pluginURL="https://raw.githubusercontent.com/unraid/unraid-tailscale/trunk/plugin/tailscale-trunk.plg"
+  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/trunk/plugin/tailscale-trunk.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
   min="7.0.0"
@@ -31,7 +31,7 @@
 
 - Update Tailscale to 1.82.0
 
-For older releases, see https://github.com/unraid/unraid-tailscale/releases
+For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 
 ]]>
 </CHANGES>
@@ -42,8 +42,8 @@ For older releases, see https://github.com/unraid/unraid-tailscale/releases
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-4.0.2-noarch-1.txz">
-<URL>https://github.com/unraid/unraid-tailscale-utils/releases/download/4.0.2/unraid-tailscale-utils-4.0.2-noarch-1.txz</URL>
-<SHA256>05520284610ee99c0b11e60674ef7d71ad33f6ca99711f251c0e5473a73b9a38</SHA256>
+<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/4.0.2/unraid-tailscale-utils-4.0.2-noarch-1.txz</URL>
+<SHA256>714aa295ab9d1bf0287a0a60b0fa9727dff7a7ebce559f6e4b57fa430a07c8ad</SHA256>
 </FILE>
 
 <!--
