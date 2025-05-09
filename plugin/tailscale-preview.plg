@@ -5,7 +5,7 @@
   name="tailscale"
   author="Derek Kaser"
   version="2025.05.08"
-  pluginURL="https://raw.githubusercontent.com/unraid/unraid-tailscale/preview/plugin/tailscale-preview.plg"
+  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/preview/plugin/tailscale-preview.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
   min="7.0.0"
@@ -31,7 +31,7 @@
 
 - Update Tailscale to 1.82.0
 
-For older releases, see https://github.com/unraid/unraid-tailscale/releases
+For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 
 ]]>
 </CHANGES>
