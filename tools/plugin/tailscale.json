@@ -5,7 +5,7 @@
     "tailscaleVersion": "tailscale_1.82.5_amd64",
     "tailscaleSHA256": "41a8931fa52055bd7ea4b51df9acff2ba2d4e9000c2380b667539b5b99991464",
     "packageVersion": "4.0.2",
-    "packageSHA256": "05520284610ee99c0b11e60674ef7d71ad33f6ca99711f251c0e5473a73b9a38",
+    "packageSHA256": "714aa295ab9d1bf0287a0a60b0fa9727dff7a7ebce559f6e4b57fa430a07c8ad",
     "pluginDirectory": "/usr/local/emhttp/plugins/tailscale",
     "configDirectory": "/boot/config/plugins/tailscale",
     "minver": "7.0.0"
