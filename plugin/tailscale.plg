@@ -7,7 +7,7 @@
   version="2025.05.08"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-tailscale/main/plugin/tailscale.plg"
   launch="Settings/Tailscale"
-  support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
+  support="https://github.com/dkaser/unraid-tailscale/issues"
   min="7.0.0"
 >
 
