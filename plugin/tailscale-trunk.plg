@@ -4,7 +4,7 @@
 <PLUGIN 
   name="tailscale"
   author="Derek Kaser"
-  version="2025.05.08"
+  version="2025.05.21"
   pluginURL="https://raw.githubusercontent.com/unraid/unraid-tailscale/trunk/plugin/tailscale-trunk.plg"
   launch="Settings/Tailscale"
   support="https://forums.unraid.net/topic/136889-plugin-tailscale/"
@@ -13,6 +13,11 @@
 
 <CHANGES>
 <![CDATA[
+###2025.05.21###
+
+- Update Tailscale to 1.84.0
+- Update localization files
+
 ###2025.05.08###
 
 - Fix: advertising exit node on 7.1
@@ -27,23 +32,19 @@
 - Add Reauthenticate button
 - Prevent erasing configuration when connected via Tailscale IP
 
-###2025.03.28###
-
-- Update Tailscale to 1.82.0
-
 For older releases, see https://github.com/unraid/unraid-tailscale/releases
 
 ]]>
 </CHANGES>
 
-<FILE Name="/boot/config/plugins/tailscale/tailscale_1.82.5_amd64.tgz">
-<URL>https://pkgs.tailscale.com/stable/tailscale_1.82.5_amd64.tgz</URL>
-<SHA256>41a8931fa52055bd7ea4b51df9acff2ba2d4e9000c2380b667539b5b99991464</SHA256>
+<FILE Name="/boot/config/plugins/tailscale/tailscale_1.84.0_amd64.tgz">
+<URL>https://pkgs.tailscale.com/stable/tailscale_1.84.0_amd64.tgz</URL>
+<SHA256>c91eb43a92c209108bfaf1237696ac2089cc3d8fcf35d570d348cbfb19d8fb31</SHA256>
 </FILE>
 
-<FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-4.0.2-noarch-1.txz">
-<URL>https://github.com/unraid/unraid-tailscale-utils/releases/download/4.0.2/unraid-tailscale-utils-4.0.2-noarch-1.txz</URL>
-<SHA256>05520284610ee99c0b11e60674ef7d71ad33f6ca99711f251c0e5473a73b9a38</SHA256>
+<FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-4.0.3-noarch-1.txz">
+<URL>https://github.com/unraid/unraid-tailscale-utils/releases/download/4.0.3/unraid-tailscale-utils-4.0.3-noarch-1.txz</URL>
+<SHA256>b93ddbd40fbe0342186349685baf04e6b1a955a8752a5181f8547a9dc58d4045</SHA256>
 </FILE>
 
 <!--
@@ -56,10 +57,10 @@ if [ -d "/usr/local/emhttp/plugins/tailscale" ]; then
     rm -rf /usr/local/emhttp/plugins/tailscale
 fi
 
-upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-4.0.2-noarch-1.txz
+upgradepkg --install-new --reinstall /boot/config/plugins/tailscale/unraid-tailscale-utils-4.0.3-noarch-1.txz
 
 mkdir -p /usr/local/emhttp/plugins/tailscale/bin
-tar xzf /boot/config/plugins/tailscale/tailscale_1.82.5_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
+tar xzf /boot/config/plugins/tailscale/tailscale_1.84.0_amd64.tgz --strip-components 1 -C /usr/local/emhttp/plugins/tailscale/bin
 
 echo "state" > /boot/config/plugins/tailscale/.gitignore
 
@@ -67,7 +68,7 @@ ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscale /usr/local/sbin/tailscal
 ln -s /usr/local/emhttp/plugins/tailscale/bin/tailscaled /usr/local/sbin/tailscaled
 
 mkdir -p /var/local/emhttp/plugins/tailscale
-echo "VERSION=2025.05.08" > /var/local/emhttp/plugins/tailscale/tailscale.ini
+echo "VERSION=2025.05.21" > /var/local/emhttp/plugins/tailscale/tailscale.ini
 echo "BRANCH=trunk" >> /var/local/emhttp/plugins/tailscale/tailscale.ini
 
 # remove other branches (e.g., if switching from main to preview)
@@ -89,9 +90,9 @@ tailscale completion bash > /etc/bash_completion.d/tailscale
 
 # cleanup old versions
 rm -f /boot/config/plugins/tailscale/tailscale-utils-*.txz
-rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '4.0.2')
+rm -f $(ls /boot/config/plugins/tailscale/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '4.0.3')
 rm -f $(ls /boot/config/plugins/tailscale/unraid-plugin-diagnostics-*.txz 2>/dev/null)
-rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.82.5_amd64')
+rm -f $(ls /boot/config/plugins/tailscale/*.tgz 2>/dev/null | grep -v 'tailscale_1.84.0_amd64')
 
 # check to see if the state file has been backed up to Unraid Connect
 if [ -d "/boot/.git" ]; then
@@ -114,7 +115,7 @@ fi
 echo ""
 echo "----------------------------------------------------"
 echo " tailscale has been installed."
-echo " Version: 2025.05.08"
+echo " Version: 2025.05.21"
 echo "----------------------------------------------------"
 echo ""
 ]]>

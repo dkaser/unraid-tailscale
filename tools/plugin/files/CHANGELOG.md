@@ -1,3 +1,8 @@
+###2025.05.21###
+
+- Update Tailscale to 1.84.0
+- Update localization files
+
 ###2025.05.08###
 
 - Fix: advertising exit node on 7.1
@@ -11,9 +16,5 @@
 - Update Tailscale to 1.82.5
 - Add Reauthenticate button
 - Prevent erasing configuration when connected via Tailscale IP
-
-###2025.03.28###
-
-- Update Tailscale to 1.82.0
 
 For older releases, see https://github.com/unraid/unraid-tailscale/releases
