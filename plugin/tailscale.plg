@@ -26,7 +26,7 @@ For older releases, see https://github.com/dkaser/unraid-tailscale/releases
 </FILE>
 
 <FILE Name="/boot/config/plugins/tailscale/unraid-tailscale-utils-4.0.3-noarch-1.txz">
-<URL>https://github.com/unraid/unraid-tailscale-utils/releases/download/4.0.3/unraid-tailscale-utils-4.0.3-noarch-1.txz</URL>
+<URL>https://github.com/dkaser/unraid-tailscale-utils/releases/download/4.0.3/unraid-tailscale-utils-4.0.3-noarch-1.txz</URL>
 <SHA256>b93ddbd40fbe0342186349685baf04e6b1a955a8752a5181f8547a9dc58d4045</SHA256>
 </FILE>
 
