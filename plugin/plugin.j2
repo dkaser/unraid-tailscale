@@ -1,0 +1,98 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN>
+
+<PLUGIN 
+  name="{{ name }}"
+  author="{{ author }}"
+  version="{{ env['PLUGIN_VERSION'] }}"
+  pluginURL="https://raw.githubusercontent.com/{{ env['GITHUB_REPOSITORY'] }}/main/plugin/tailscale.plg"
+  launch="Settings/Tailscale"
+  support="https://github.com/dkaser/unraid-tailscale/issues"
+  min="{{ minver }}"
+>
+
+<CHANGES>
+<![CDATA[
+###{{ env['PLUGIN_VERSION'] }}###
+{{ env['PLUGIN_CHANGELOG'] }}
+
+For older releases, see https://github.com/{{ env['GITHUB_REPOSITORY'] }}/releases
+]]>
+</CHANGES>
+
+<FILE Name="{{ configDirectory }}/{{ tailscaleVersion }}.tgz">
+<URL>https://pkgs.tailscale.com/stable/{{ tailscaleVersion }}.tgz</URL>
+<SHA256>{{ tailscaleSHA256 }}</SHA256>
+</FILE>
+
+<FILE Name="{{ configDirectory }}/unraid-tailscale-utils-{{ packageVersion }}-noarch-1.txz">
+<URL>https://github.com/unraid/unraid-tailscale-utils/releases/download/{{ packageVersion }}/unraid-tailscale-utils-{{ packageVersion }}-noarch-1.txz</URL>
+<SHA256>{{ packageSHA256 }}</SHA256>
+</FILE>
+
+<!--
+The 'install' script.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+if [ -d "{{ pluginDirectory }}" ]; then
+    rm -rf {{ pluginDirectory }}
+fi
+
+upgradepkg --install-new --reinstall {{ configDirectory }}/unraid-tailscale-utils-{{ packageVersion }}-noarch-1.txz
+
+mkdir -p {{ pluginDirectory }}/bin
+tar xzf {{ configDirectory }}/{{ tailscaleVersion }}.tgz --strip-components 1 -C {{ pluginDirectory }}/bin
+
+echo "state" > {{ configDirectory }}/.gitignore
+
+ln -s {{ pluginDirectory }}/bin/tailscale /usr/local/sbin/tailscale
+ln -s {{ pluginDirectory }}/bin/tailscaled /usr/local/sbin/tailscaled
+
+# remove other branches (e.g., if switching from main to preview)
+rm -f /boot/config/plugins/tailscale-preview.plg
+rm -f /var/log/plugins/tailscale-preview.plg
+rm -f /boot/config/plugins/tailscale-trunk.plg
+rm -f /var/log/plugins/tailscale-trunk.plg
+
+# start tailscaled
+{{ pluginDirectory }}/restart.sh
+
+# Bash completion
+tailscale completion bash > /etc/bash_completion.d/tailscale
+
+# cleanup old versions
+rm -f /boot/config/plugins/{{ name }}/tailscale-utils-*.txz
+rm -f $(ls /boot/config/plugins/{{ name }}/unraid-tailscale-utils-*.txz 2>/dev/null | grep -v '{{ packageVersion }}')
+rm -f $(ls /boot/config/plugins/{{ name }}/unraid-plugin-diagnostics-*.txz 2>/dev/null)
+rm -f $(ls /boot/config/plugins/{{ name }}/*.tgz 2>/dev/null | grep -v '{{ tailscaleVersion }}')
+
+echo ""
+echo "----------------------------------------------------"
+echo " {{ name }} has been installed."
+echo " Version: {{ env['PLUGIN_VERSION'] }}"
+echo "----------------------------------------------------"
+echo ""
+</INLINE>
+</FILE>
+
+<!--
+The 'remove' script.
+-->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+# Stop service
+/etc/rc.d/rc.tailscale stop 2>/dev/null
+
+rm /usr/local/sbin/tailscale
+rm /usr/local/sbin/tailscaled
+
+removepkg unraid-tailscale-utils
+
+rm -rf {{ pluginDirectory }}
+rm -f {{ configDirectory }}/*.tgz
+rm -f {{ configDirectory }}/*.txz
+</INLINE>
+</FILE>
+
+</PLUGIN>

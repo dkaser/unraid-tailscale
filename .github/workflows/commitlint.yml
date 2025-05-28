@@ -3,7 +3,7 @@ name: Commit Quality
 on:
   push:
     branches:
-      - trunk
+      - main
   pull_request:
 
 jobs:

@@ -1,0 +1,43 @@
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: tag
+
+      - uses: actions/checkout@v3
+        with:
+          path: main
+          ref: main
+
+      - run: echo "PLUGIN_JSON=$(jq -c . < tag/plugin/plugin.json)" >> $GITHUB_ENV
+
+      - name: Template
+        uses: cuchi/jinja2-action@0264c440d5561d32eee3d8239a9a637a96eb5a61
+        with:
+          template: main/plugin/plugin.j2
+          output_file: main/plugin/${{ fromJson(env.PLUGIN_JSON).name }}.plg
+          data_file: main/plugin/plugin.json
+        env:
+          PLUGIN_VERSION: ${{ github.event.release.name }}
+          PLUGIN_CHANGELOG: ${{ github.event.release.body }}
+
+      - name: Commit plugin file
+        run: |
+          cd main
+          gh api graphql \
+            -F githubRepository=$GITHUB_REPOSITORY \
+            -F branchName=$BRANCH \
+            -F expectedHeadOid=$(git rev-parse HEAD) \
+            -F commitMessage="release: update plugin file for ${{ github.event.release.name }}" \
+            -F pluginFile[path]="plugin/${{ fromJson(env.PLUGIN_JSON).name }}.plg" -F pluginFile[contents]=$(base64 -w0 plugin/${{ fromJson(env.PLUGIN_JSON).name }}.plg) \
+            -F 'query=@.github/api/createCommitOnBranch.gql'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: "main"
