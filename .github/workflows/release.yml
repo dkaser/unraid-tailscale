@@ -41,24 +41,3 @@ jobs:
           cd ${{ github.workspace }}/main
           git tag -f main ${{ steps.release_action.outputs.commit_long_sha }}
           git push origin main --force
-
-      - name: Notify Discord
-        uses: dkaser/discord-webhook-notify@tailscale
-        with:
-          webhookUrl: ${{ secrets.TAILSCALE_DISCORD_WEBHOOK }}
-          username: Tailscale Bot
-          avatarUrl: https://raw.githubusercontent.com/unraid/unraid-tailscale/trunk/logo.png
-          thumbnailUrl: https://raw.githubusercontent.com/unraid/unraid-tailscale/trunk/logo.png
-          severity: info
-          color: ${{ github.event.release.prerelease && '#ffff00' || '#00ff00' }}
-          title: New Update Available
-          description: |
-            ## Tailscale Plugin Update : ${{ github.event.release.name }}
-
-            ${{ github.event.release.body }}
-          fields: |
-            [
-              {"name": "Channel", "value": ${{ toJson(github.event.release.prerelease && 'Preview :test_tube:' || 'Release') }}, "inline": true},
-              {"name": "Tag", "value": ${{ toJson(github.event.release.tag_name) }}, "inline": true},
-              {"name": "Github Release", "value": ${{ toJson(format('[Link]({0})', github.event.release.html_url)) }}, "inline": true}
-            ]
